@@ -13,6 +13,10 @@ public class PlayerMovement : MonoBehaviour
     [Header("Player Speed")]
     private float speed;
 
+    [SerializeField]
+    private GameObject playerCamera;
+    public Transform player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        player.transform.rotation = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0);
+
         var hInput = Input.GetAxis("Horizontal");
         var vInput = Input.GetAxis("Vertical");
 
