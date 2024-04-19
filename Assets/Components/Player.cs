@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private int PlayerLevel;
-    private int Reputation;
-    private int MoveSpeed;
-    private int JumpHeight;
+    public int playerLevel;
+    public int reputation;
+    public float moveSpeed;
+    public float jumpHeight;
+    public float gravityValue;
     
 
     // Start is called before the first frame update
