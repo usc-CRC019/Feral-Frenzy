@@ -270,7 +270,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 111023897}
-  m_LocalRotation: {x: 0.18131426, y: 0.000000023930177, z: -0.0000000044120108, w: 0.9834252}
+  m_LocalRotation: {x: 0.18131426, y: -0.000000023930173, z: 0.00000000441201, w: 0.9834252}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -755,6 +755,7 @@ MonoBehaviour:
   isSprinting: 0
   isJumping: 0
   isWallrunning: 0
+  wallrunCooldown: 0
   currentMoveVector: {x: 0, y: 0, z: 0}
   playerCamera: {fileID: 963194225}
   player: {fileID: 971295163}
@@ -873,7 +874,7 @@ MonoBehaviour:
   moveSpeed: 3
   jumpHeight: 3
   gravityValue: 17
-  wallrunGravityValue: 3
+  wallrunGravityValue: 8
 --- !u!1 &1382822363
 GameObject:
   m_ObjectHideFlags: 0

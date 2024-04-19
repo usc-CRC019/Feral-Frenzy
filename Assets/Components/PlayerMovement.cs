@@ -14,6 +14,11 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumping;
     public bool isWallrunning;
 
+    public float wallrunCooldown;
+
+    bool isWallrunningLeft;
+    bool isWallrunningRight;
+
     public Vector3 currentMoveVector;
     
 
@@ -40,14 +45,18 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = transform.TransformDirection(moveDirection);
 
         GroundedCheck();
-        Jump();
         SprintCheck();
         Sprint();
         Wallrun();
+        Jump();
 
-        player.transform.rotation = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0);
-
+        //rotate player to match camera rotation unless wallrunning
+        if (!isWallrunning)
+        {
+            player.transform.rotation = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0);
+        }
         
+
         moveDirection = moveDirection * playerStats.moveSpeed;
         moveDirection = Vector3.ClampMagnitude(moveDirection, playerStats.moveSpeed);
 
@@ -77,53 +86,81 @@ public class PlayerMovement : MonoBehaviour
             isJumping = true;
         }
 
+        if (Input.GetKeyDown(KeyCode.Space) && isWallrunning)
+        {
+            isWallrunning = false;
+            isWallrunningLeft = false;
+            isWallrunningRight = false;
+
+            wallrunCooldown = Time.time + 0.35f;
+
+            currentMoveVector = moveDirection;
+            playerVelocity.y = Mathf.Sqrt((playerStats.jumpHeight * playerStats.gravityValue) + 10);
+            isJumping = true;
+        }
+
         if (isJumping)
         {
-            moveDirection += (currentMoveVector * 0.75f);
+            //moveDirection += (currentMoveVector * 0.75f);
         }
         else
         {
-            currentMoveVector = Vector3.zero;
+            //currentMoveVector = Vector3.zero;
         }
         
     }
 
     private void Wallrun()
     {
-        if (isJumping)
-        {
 
+        if (isJumping && wallrunCooldown <= Time.time)
+        {
             RaycastHit hitLeft;
             RaycastHit hitRight;
-            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position - new Vector3(0, 0.05f, 0), characterController.radius * 0.35f, -transform.right, out hitLeft, 0.2f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
+
+            //Left wall check
+            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.1f, -transform.right, out hitLeft, 0.2f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
             {
                 if (Input.GetKey(KeyCode.A))
                 {
                     //this.transform.SetParent(hitLeft.transform, true);
                     isWallrunning = true;
-                    playerVelocity.y = 0;
+                    isWallrunningLeft = true;
+                }
+                else
+                {
+                    isWallrunningLeft = false;
                 }
             }
-            else
-            {
-                isWallrunning = false;
-            }
+            
 
-            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position - new Vector3(0,0.05f,0), characterController.radius * 0.35f, transform.right, out hitRight, 0.2f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
+            //Right wall check
+            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.1f, transform.right, out hitRight, 0.2f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
             {
                 if (Input.GetKey(KeyCode.D))
                 {
                     //this.transform.SetParent(hitRight.transform, true);
                     isWallrunning = true;
-                    playerVelocity.y = 0;
+                    isWallrunningRight = true;
+                    
                 }
+                else
+                {
+                    isWallrunningRight = false;
+                }
+            }
+            
+
+            if (isWallrunningLeft || isWallrunningRight)
+            {
+                playerVelocity.y = 0;
             }
             else
             {
                 isWallrunning = false;
+                isWallrunningLeft = false;
+                isWallrunningRight = false;
             }
-
-            //Debug.Log(isWallrunning);
         }
     }
 
@@ -159,6 +196,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = true;
             isJumping = false;
+            isWallrunning = false;
         }
         else
         {
