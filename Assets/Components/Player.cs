@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public float moveSpeed;
     public float jumpHeight;
     public float gravityValue;
+    public float wallrunGravityValue;
     
 
     // Start is called before the first frame update

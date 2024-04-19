@@ -51,9 +51,13 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = moveDirection * playerStats.moveSpeed;
         moveDirection = Vector3.ClampMagnitude(moveDirection, playerStats.moveSpeed);
 
-        if (!isGrounded)
+        if (!isGrounded && isWallrunning == false)
         {
             playerVelocity.y -= playerStats.gravityValue * Time.deltaTime;
+        }
+        else if (isWallrunning)
+        {
+            playerVelocity.y -= playerStats.wallrunGravityValue * Time.deltaTime;
         }
         
 
@@ -91,12 +95,13 @@ public class PlayerMovement : MonoBehaviour
 
             RaycastHit hitLeft;
             RaycastHit hitRight;
-            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position - new Vector3(0, 0.15f, 0), characterController.radius * 0.35f, -transform.right, out hitLeft, 0.2f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
+            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position - new Vector3(0, 0.05f, 0), characterController.radius * 0.35f, -transform.right, out hitLeft, 0.2f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
             {
                 if (Input.GetKey(KeyCode.A))
                 {
-                    this.transform.SetParent(hitLeft.transform, true);
+                    //this.transform.SetParent(hitLeft.transform, true);
                     isWallrunning = true;
+                    playerVelocity.y = 0;
                 }
             }
             else
@@ -104,12 +109,13 @@ public class PlayerMovement : MonoBehaviour
                 isWallrunning = false;
             }
 
-            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position - new Vector3(0,0.15f,0), characterController.radius * 0.35f, transform.right, out hitRight, 0.2f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
+            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position - new Vector3(0,0.05f,0), characterController.radius * 0.35f, transform.right, out hitRight, 0.2f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
             {
                 if (Input.GetKey(KeyCode.D))
                 {
-                    this.transform.SetParent(hitRight.transform, true);
+                    //this.transform.SetParent(hitRight.transform, true);
                     isWallrunning = true;
+                    playerVelocity.y = 0;
                 }
             }
             else
