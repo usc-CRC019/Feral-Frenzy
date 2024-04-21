@@ -113,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
     private void Wallrun()
     {
 
-        if (isJumping && wallrunCooldown <= Time.time)
+        if (!isGrounded && wallrunCooldown <= Time.time)
         {
             RaycastHit hitLeft;
             RaycastHit hitRight;
@@ -147,10 +147,11 @@ public class PlayerMovement : MonoBehaviour
             }
             
 
-            if (isWallrunningLeft || isWallrunningRight)
+            if (isWallrunningLeft || isWallrunningRight && !isGrounded)
             {
                 playerVelocity.y = 0;
                 isWallrunning = true;
+                isJumping = false;
             }
             else
             {
@@ -194,6 +195,8 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
             isJumping = false;
             isWallrunning = false;
+            isWallrunningLeft = false;
+            isWallrunningRight = false;
         }
         else
         {
