@@ -71,8 +71,9 @@ public class PlayerMovement : MonoBehaviour
 
         characterController.Move((moveDirection + playerVelocity) * Time.deltaTime);
 
-        
+
         //Debug.Log(isGrounded);
+        //Debug.Log(characterController.velocity.magnitude);
     }
 
 
@@ -101,11 +102,11 @@ public class PlayerMovement : MonoBehaviour
         //Adds movement vector the player had at beginning of jump throughout the jump
         if (isJumping)
         {
-            //moveDirection += (currentMoveVector * 0.75f);
+            moveDirection += (currentMoveVector * 0.75f);
         }
         else
         {
-            //currentMoveVector = Vector3.zero;
+            currentMoveVector = Vector3.zero;
         }
         
     }
@@ -178,11 +179,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isSprinting)
         {
-            playerStats.moveSpeed = 5f;
+            playerStats.moveSpeed = playerStats.sprintMoveSpeed;
         }
         else
         {
-            playerStats.moveSpeed = 3f;
+            playerStats.moveSpeed = playerStats.walkMoveSpeed;
         }
     }
 
@@ -197,6 +198,7 @@ public class PlayerMovement : MonoBehaviour
             isWallrunning = false;
             isWallrunningLeft = false;
             isWallrunningRight = false;
+            currentMoveVector = Vector3.zero;
         }
         else
         {
