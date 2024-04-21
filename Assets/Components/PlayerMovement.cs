@@ -147,6 +147,10 @@ public class PlayerMovement : MonoBehaviour
                     isWallrunningLeft = false;
                 }
             }
+            else
+            {
+                isWallrunningLeft = false;
+            }
             
 
             //Right wall check
@@ -161,6 +165,10 @@ public class PlayerMovement : MonoBehaviour
                 {
                     isWallrunningRight = false;
                 }
+            }
+            else
+            {
+                isWallrunningRight = false;
             }
             
 
