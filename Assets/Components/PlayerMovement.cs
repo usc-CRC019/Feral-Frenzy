@@ -124,6 +124,13 @@ public class PlayerMovement : MonoBehaviour
         {
             currentMoveVector = Vector3.zero;
         }
+
+
+        RaycastHit hit;
+        if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, characterController.radius * 0.25f, transform.up, out hit, 0.15f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both) && isJumping)
+        {
+            playerVelocity.y -= 0.2f;
+        }
         
     }
 
