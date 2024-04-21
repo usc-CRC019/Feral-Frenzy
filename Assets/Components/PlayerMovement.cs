@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     bool isWallrunningRight;
 
     public Vector3 currentMoveVector;
+
+    private float builtUpJumpPower;
     
 
     [SerializeField]
@@ -59,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = moveDirection * playerStats.moveSpeed;
         moveDirection = Vector3.ClampMagnitude(moveDirection, playerStats.moveSpeed);
 
-        if (!isGrounded && isWallrunning == false)
+        if (!isGrounded && !isWallrunning)
         {
             playerVelocity.y -= playerStats.gravityValue * Time.deltaTime;
         }
@@ -79,11 +81,25 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKey(KeyCode.Space) && isGrounded)
+        {
+            if (builtUpJumpPower <= 3f)
+            {
+                builtUpJumpPower += 0.01f;
+            }
+            else
+            {
+                builtUpJumpPower = 3;
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space) && isGrounded)
         {
             currentMoveVector = moveDirection;
-            playerVelocity.y = Mathf.Sqrt(playerStats.jumpHeight * playerStats.gravityValue);
+            playerVelocity.y = Mathf.Sqrt((playerStats.jumpHeight + builtUpJumpPower) * playerStats.gravityValue);
+            builtUpJumpPower = 0f;
             isJumping = true;
+            StartCoroutine(GradualJumpSpeed());
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && isWallrunning)
@@ -181,7 +197,7 @@ public class PlayerMovement : MonoBehaviour
         {
             playerStats.moveSpeed = playerStats.sprintMoveSpeed;
         }
-        else
+        else if (!isJumping)
         {
             playerStats.moveSpeed = playerStats.walkMoveSpeed;
         }
@@ -191,9 +207,10 @@ public class PlayerMovement : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, characterController.radius * 0.25f, -transform.up, out hit, 0.15f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Editor))
+        if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, characterController.radius * 0.25f, -transform.up, out hit, 0.15f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
         {
             isGrounded = true;
+
             isJumping = false;
             isWallrunning = false;
             isWallrunningLeft = false;
@@ -204,5 +221,16 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    private IEnumerator GradualJumpSpeed()
+    {
+        while (playerStats.moveSpeed < playerStats.sprintMoveSpeed -0.1f)
+        {
+            playerStats.moveSpeed = Mathf.Lerp(playerStats.moveSpeed, playerStats.sprintMoveSpeed, 0.05f);
+            yield return null;
+        }
+
+        playerStats.moveSpeed = playerStats.sprintMoveSpeed;
     }
 }
