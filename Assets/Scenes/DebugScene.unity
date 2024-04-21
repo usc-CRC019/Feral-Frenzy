@@ -758,7 +758,6 @@ MonoBehaviour:
   wallrunCooldown: 0
   currentMoveVector: {x: 0, y: 0, z: 0}
   playerCamera: {fileID: 963194225}
-  player: {fileID: 971295163}
 --- !u!143 &971295159
 CharacterController:
   m_ObjectHideFlags: 0
@@ -874,7 +873,7 @@ MonoBehaviour:
   moveSpeed: 3
   jumpHeight: 3
   gravityValue: 17
-  wallrunGravityValue: 8
+  wallrunGravityValue: 12
 --- !u!1 &1382822363
 GameObject:
   m_ObjectHideFlags: 0
@@ -1038,11 +1037,11 @@ MonoBehaviour:
   m_AvoidObstacles: 1
   m_DistanceLimit: 0
   m_MinimumOcclusionTime: 0
-  m_CameraRadius: 0.1
+  m_CameraRadius: 0.3
   m_Strategy: 0
   m_MaximumEffort: 4
   m_SmoothingTime: 0
-  m_Damping: 0
+  m_Damping: 1
   m_DampingWhenOccluded: 0
   m_OptimalTargetDistance: 0
 --- !u!1 &1402949792

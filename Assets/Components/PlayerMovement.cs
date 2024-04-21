@@ -24,7 +24,6 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private GameObject playerCamera;
-    public Transform player;
 
     private Player playerStats;
 
@@ -53,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         //rotate player to match camera rotation unless wallrunning
         if (!isWallrunning)
         {
-            player.transform.rotation = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0);
+            this.transform.rotation = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0);
         }
         
 
@@ -99,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
             isJumping = true;
         }
 
+        //Adds movement vector the player had at beginning of jump throughout the jump
         if (isJumping)
         {
             //moveDirection += (currentMoveVector * 0.75f);
@@ -123,8 +123,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.A))
                 {
-                    //this.transform.SetParent(hitLeft.transform, true);
-                    isWallrunning = true;
                     isWallrunningLeft = true;
                 }
                 else
@@ -139,8 +137,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.D))
                 {
-                    //this.transform.SetParent(hitRight.transform, true);
-                    isWallrunning = true;
                     isWallrunningRight = true;
                     
                 }
@@ -154,6 +150,7 @@ public class PlayerMovement : MonoBehaviour
             if (isWallrunningLeft || isWallrunningRight)
             {
                 playerVelocity.y = 0;
+                isWallrunning = true;
             }
             else
             {
