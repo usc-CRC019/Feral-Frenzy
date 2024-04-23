@@ -69,10 +69,9 @@ public class PlayerMovement : MonoBehaviour
         {
             //playerVelocity.y -= playerStats.wallrunGravityValue * Time.deltaTime;
         }
-        
+
 
         characterController.Move((moveDirection + playerVelocity) * Time.deltaTime);
-
 
         //Debug.Log(isGrounded);
         //Debug.Log(characterController.velocity.magnitude);
@@ -148,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
             RaycastHit hitRight;
 
             //Left wall check
-            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.1f, -transform.right, out hitLeft, 0.2f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
+            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.08f, -transform.right, out hitLeft, 0.2f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
             {
                 if (Input.GetKey(KeyCode.A))
                 {
@@ -166,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
             
 
             //Right wall check
-            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.1f, transform.right, out hitRight, 0.2f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
+            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.08f, transform.right, out hitRight, 0.2f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
             {
                 if (Input.GetKey(KeyCode.D))
                 {
@@ -188,7 +187,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 playerVelocity.y = 0;
                 StartCoroutine(GradualJumpSpeed());
-                moveDirection += ((currentMoveVector * playerStats.sprintMoveSpeed) * 15);
+                characterController.Move((currentMoveVector * playerStats.sprintMoveSpeed) * Time.deltaTime);
+                //moveDirection += ((currentMoveVector * playerStats.sprintMoveSpeed) * 50);
                 isWallrunning = true;
                 isJumping = false;
             }
