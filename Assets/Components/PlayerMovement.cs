@@ -13,9 +13,10 @@ public class PlayerMovement : MonoBehaviour
     public bool isSprinting;
     public bool isJumping;
     public bool isWallrunning;
+    //public bool isFalling;
 
     private float wallrunCooldown;
-
+    private float wallrunStartTime;
     bool isWallrunningLeft;
     bool isWallrunningRight;
 
@@ -34,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     {
         playerStats = GetComponent<Player>();
         characterController = GetComponent<CharacterController>();
+        wallrunStartTime = 0f;
     }
 
     // Update is called once per frame
@@ -185,6 +187,22 @@ public class PlayerMovement : MonoBehaviour
 
             if (isWallrunningLeft || isWallrunningRight && !isGrounded)
             {
+                if (wallrunStartTime == 0)
+                {
+                    wallrunStartTime = Time.time + 1.5f;
+                }
+
+                if (wallrunStartTime <= Time.time)
+                {
+                    //wallrunStartTime = 0;
+                    isWallrunning = false;
+                    isWallrunningLeft = false;
+                    isWallrunningRight = false;
+                    //isFalling = true;
+                    return;
+                }
+
+
                 playerVelocity.y = 0;
                 StartCoroutine(GradualJumpSpeed());
                 characterController.Move((currentMoveVector * playerStats.sprintMoveSpeed) * Time.deltaTime);
@@ -194,10 +212,12 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
+                wallrunStartTime = 0;
                 isWallrunning = false;
                 isWallrunningLeft = false;
                 isWallrunningRight = false;
                 isJumping = true;
+                //isFalling = true;
             }
         }
     }
@@ -233,6 +253,7 @@ public class PlayerMovement : MonoBehaviour
         if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, characterController.radius * 0.25f, -transform.up, out hit, 0.15f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
         {
             isGrounded = true;
+            //isFalling = false;
 
             isJumping = false;
             isWallrunning = false;
@@ -245,6 +266,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             isGrounded = false;
+            //isFalling = true;
         }
     }
 
