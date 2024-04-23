@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -131,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit hit;
         if (isJumping)
         {
-            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, characterController.radius * 0.25f, transform.up, out hit, 0.15f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
+            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, characterController.radius * 0.25f, transform.up, out hit, 0.15f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Editor))
             {
                 playerVelocity.y -= 0.2f;
             }
@@ -149,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
             RaycastHit hitRight;
 
             //Left wall check
-            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.08f, -transform.right, out hitLeft, 0.2f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
+            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.08f, -transform.right, out hitLeft, 0.2f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Editor))
             {
                 if (Input.GetKey(KeyCode.A))
                 {
@@ -167,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
             
 
             //Right wall check
-            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.08f, transform.right, out hitRight, 0.2f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
+            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.08f, transform.right, out hitRight, 0.2f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Editor))
             {
                 if (Input.GetKey(KeyCode.D))
                 {
@@ -250,7 +248,7 @@ public class PlayerMovement : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, characterController.radius * 0.25f, -transform.up, out hit, 0.15f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
+        if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, characterController.radius * 0.25f, -transform.up, out hit, 0.15f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Editor))
         {
             isGrounded = true;
             //isFalling = false;
