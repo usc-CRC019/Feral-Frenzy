@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumping;
     public bool isWallrunning;
 
-    public float wallrunCooldown;
+    private float wallrunCooldown;
 
     bool isWallrunningLeft;
     bool isWallrunningRight;
@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (isWallrunning)
         {
-            playerVelocity.y -= playerStats.wallrunGravityValue * Time.deltaTime;
+            //playerVelocity.y -= playerStats.wallrunGravityValue * Time.deltaTime;
         }
         
 
@@ -104,15 +104,16 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isWallrunning)
         {
-            isWallrunning = false;
-            isWallrunningLeft = false;
-            isWallrunningRight = false;
+            
 
             wallrunCooldown = Time.time + 0.35f;
 
             currentMoveVector = moveDirection;
             playerVelocity.y = Mathf.Sqrt((playerStats.jumpHeight * playerStats.gravityValue) + 10);
             isJumping = true;
+            isWallrunning = false;
+            isWallrunningLeft = false;
+            isWallrunningRight = false;
         }
 
         //Adds movement vector the player had at beginning of jump throughout the jump
@@ -120,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
         {
             moveDirection += (currentMoveVector * 0.75f);
         }
-        else
+        else if (!isWallrunning) 
         {
             currentMoveVector = Vector3.zero;
         }
@@ -177,11 +178,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 isWallrunningRight = false;
             }
-            
+
 
             if (isWallrunningLeft || isWallrunningRight && !isGrounded)
             {
                 playerVelocity.y = 0;
+                //StartCoroutine(GradualJumpSpeed());
                 isWallrunning = true;
                 isJumping = false;
             }
@@ -190,6 +192,7 @@ public class PlayerMovement : MonoBehaviour
                 isWallrunning = false;
                 isWallrunningLeft = false;
                 isWallrunningRight = false;
+                isJumping = true;
             }
         }
     }
@@ -231,6 +234,8 @@ public class PlayerMovement : MonoBehaviour
             isWallrunningLeft = false;
             isWallrunningRight = false;
             currentMoveVector = Vector3.zero;
+            //StopAllCoroutines();
+            playerStats.moveSpeed = playerStats.walkMoveSpeed;
         }
         else
         {
