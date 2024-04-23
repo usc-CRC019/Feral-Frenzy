@@ -128,9 +128,13 @@ public class PlayerMovement : MonoBehaviour
 
 
         RaycastHit hit;
-        if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, characterController.radius * 0.25f, transform.up, out hit, 0.15f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both) && isJumping)
+        if (isJumping)
         {
-            playerVelocity.y -= 0.2f;
+            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, characterController.radius * 0.25f, transform.up, out hit, 0.15f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
+            {
+                playerVelocity.y -= 0.2f;
+            }
+            
         }
         
     }
@@ -183,7 +187,8 @@ public class PlayerMovement : MonoBehaviour
             if (isWallrunningLeft || isWallrunningRight && !isGrounded)
             {
                 playerVelocity.y = 0;
-                //StartCoroutine(GradualJumpSpeed());
+                StartCoroutine(GradualJumpSpeed());
+                moveDirection += ((currentMoveVector * playerStats.sprintMoveSpeed) * 15);
                 isWallrunning = true;
                 isJumping = false;
             }
