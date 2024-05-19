@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public bool isWallrunning;
     public bool isFalling;
 
+    public bool canJump;
+
     private float wallrunCooldown;
     private float wallrunStartTime;
     bool isWallrunningLeft;
@@ -21,7 +23,10 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 currentMoveVector;
 
     private float builtUpJumpPower;
-    
+
+    private float slopeMovementY;
+    private float lastGroundedTime;
+
 
     [SerializeField]
     private GameObject playerCamera;
@@ -45,6 +50,15 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = new Vector3(hInput, 0, vInput);
         moveDirection = transform.TransformDirection(moveDirection);
 
+        if (lastGroundedTime < Time.time + 0.2f && !isFalling)
+        {
+            canJump = true;
+        }
+        else
+        {
+            canJump = false;
+        }
+        
         GroundedCheck();
         SprintCheck();
         Sprint();
@@ -62,15 +76,14 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = moveDirection * playerStats.moveSpeed;
         moveDirection = Vector3.ClampMagnitude(moveDirection, playerStats.moveSpeed);
 
+        
+
         if (!isGrounded && !isWallrunning)
         {
             playerVelocity.y -= playerStats.gravityValue * Time.deltaTime;
         }
-        else if (isWallrunning)
-        {
-            //playerVelocity.y -= playerStats.wallrunGravityValue * Time.deltaTime;
-        }
 
+        PlayerSmoothSlopeMovement();
 
         characterController.Move((moveDirection + playerVelocity) * Time.deltaTime);
 
@@ -81,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetKey(KeyCode.Space) && isGrounded && playerStats.playerStamina >= playerStats.jumpStaminaCost)
+        if (Input.GetKey(KeyCode.Space) && canJump && playerStats.playerStamina >= playerStats.jumpStaminaCost)
         {
             playerStats.moveSpeed = playerStats.walkMoveSpeed - 1;
 
@@ -95,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.Space) && isGrounded && playerStats.playerStamina >= playerStats.jumpStaminaCost)
+        if (Input.GetKeyUp(KeyCode.Space) && canJump && playerStats.playerStamina >= playerStats.jumpStaminaCost)
         {
             wallrunCooldown = Time.time + 0.35f;
             playerStats.JumpStaminaCost();
@@ -242,7 +255,7 @@ public class PlayerMovement : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, characterController.radius * 0.25f, -transform.up, out hit, 0.15f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Editor))
+        if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, characterController.radius * 0.25f, -transform.up, out hit, 0.15f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
         {
             //If player hits ground fast enough apply fall damage
             if (playerVelocity.y < -15f)
@@ -252,7 +265,7 @@ public class PlayerMovement : MonoBehaviour
 
             
             isGrounded = true;
-            //isFalling = false;
+            lastGroundedTime = Time.time;
 
             isJumping = false;
             isWallrunning = false;
@@ -260,13 +273,11 @@ public class PlayerMovement : MonoBehaviour
             isWallrunningRight = false;
             currentMoveVector = Vector3.zero;
             playerVelocity.y = 0f;
-            //StopAllCoroutines();
             playerStats.moveSpeed = playerStats.walkMoveSpeed;
         }
         else
         {
             isGrounded = false;
-            //isFalling = true;
         }
     }
 
@@ -274,11 +285,32 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isGrounded && !isWallrunning && !isJumping)
         {
-            isFalling = true;
+            if (Time.time > lastGroundedTime + 0.2f)
+            {
+                isFalling = true;
+            }
+            
         }
         else
         {
             isFalling = false;
+        }
+    }
+
+    public void PlayerSmoothSlopeMovement()
+    {
+        //move player smoothly along slopes (mostly down slopes cause jittering without this)
+        if (playerVelocity.y < 0 && Physics.Raycast(transform.position, -transform.up, out RaycastHit hitDownInfo, 1.1f))
+        {
+            if (hitDownInfo.normal.y < 1)
+            {
+                slopeMovementY = hitDownInfo.normal.y * playerStats.moveSpeed;
+                moveDirection.y -= slopeMovementY;
+            }
+            else
+            {
+                slopeMovementY = 0;
+            }
         }
     }
 
