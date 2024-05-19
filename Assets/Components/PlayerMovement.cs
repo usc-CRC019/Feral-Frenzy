@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isSprinting;
     public bool isJumping;
     public bool isWallrunning;
-    //public bool isFalling;
+    public bool isFalling;
 
     private float wallrunCooldown;
     private float wallrunStartTime;
@@ -50,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
         Sprint();
         Wallrun();
         Jump();
+        FallingCheck();
 
         //rotate player to match camera rotation unless wallrunning
         if (!isWallrunning)
@@ -188,11 +189,9 @@ public class PlayerMovement : MonoBehaviour
 
                 if (wallrunStartTime <= Time.time)
                 {
-                    //wallrunStartTime = 0;
                     isWallrunning = false;
                     isWallrunningLeft = false;
                     isWallrunningRight = false;
-                    //isFalling = true;
                     return;
                 }
 
@@ -200,7 +199,6 @@ public class PlayerMovement : MonoBehaviour
                 playerVelocity.y = 0;
                 StartCoroutine(GradualJumpSpeed());
                 characterController.Move((currentMoveVector * playerStats.sprintMoveSpeed) * Time.deltaTime);
-                //moveDirection += ((currentMoveVector * playerStats.sprintMoveSpeed) * 50);
                 isWallrunning = true;
                 isJumping = false;
             }
@@ -210,8 +208,6 @@ public class PlayerMovement : MonoBehaviour
                 isWallrunning = false;
                 isWallrunningLeft = false;
                 isWallrunningRight = false;
-                isJumping = true;
-                //isFalling = true;
             }
         }
     }
@@ -271,6 +267,18 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = false;
             //isFalling = true;
+        }
+    }
+
+    private void FallingCheck()
+    {
+        if (!isGrounded && !isWallrunning && !isJumping)
+        {
+            isFalling = true;
+        }
+        else
+        {
+            isFalling = false;
         }
     }
 
