@@ -218,7 +218,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void SprintCheck()
     {
-        if (isGrounded && Input.GetKey(KeyCode.LeftShift) && playerStats.playerStamina >= 0 && moveDirection != Vector3.zero) 
+        if (isGrounded && Input.GetKey(KeyCode.LeftShift) && playerStats.playerStamina >= 0 && moveDirection != Vector3.zero && builtUpJumpPower == 0f) 
         {
             isSprinting = true;
             playerStats.SetStamRegenTime();
