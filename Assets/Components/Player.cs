@@ -155,4 +155,13 @@ public class Player : MonoBehaviour
             playerLevel = 10;
         }
     }
+
+    public void TeleportPlayer(GameObject endGate)
+    {
+        CharacterController characterController = GetComponent<CharacterController>();
+
+        characterController.enabled = false;
+        characterController.transform.position = endGate.transform.position;
+        characterController.enabled = true;
+    }
 }
