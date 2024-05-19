@@ -61,6 +61,11 @@ public class Player : MonoBehaviour
             KillPlayer();
         }
 
+        if (playerHealth > 100f)
+        {
+            playerHealth = 100f;
+        }
+
         if (playerHealth < 100f && playerAlive)
         {
             playerHealth += 0.01f * Time.deltaTime;
@@ -83,5 +88,11 @@ public class Player : MonoBehaviour
     public void SetStamRegenTime()
     {
         playerStamRegenDelay = Time.time + 2f;
+    }
+
+    public void GiveTunaSnack()
+    {
+        playerHealth += 30f;
+        playerStamina += 100;
     }
 }
