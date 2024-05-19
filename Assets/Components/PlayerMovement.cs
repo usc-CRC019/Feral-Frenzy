@@ -98,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
         {
             wallrunCooldown = Time.time + 0.35f;
             playerStats.JumpStaminaCost();
+            playerStats.SetStamRegenTime();
             currentMoveVector = moveDirection;
             playerVelocity.y = Mathf.Sqrt((playerStats.jumpHeight + builtUpJumpPower) * playerStats.gravityValue);
             builtUpJumpPower = 0f;
@@ -217,9 +218,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void SprintCheck()
     {
-        if (isGrounded && Input.GetKey(KeyCode.LeftShift) && playerStats.playerStamina >= 1) 
+        if (isGrounded && Input.GetKey(KeyCode.LeftShift) && playerStats.playerStamina >= 0 && moveDirection != Vector3.zero) 
         {
             isSprinting = true;
+            playerStats.SetStamRegenTime();
         }
         else
         {
@@ -252,7 +254,7 @@ public class PlayerMovement : MonoBehaviour
                 playerStats.playerHealth += playerVelocity.y * 0.5f;
             }
 
-
+            
             isGrounded = true;
             //isFalling = false;
 

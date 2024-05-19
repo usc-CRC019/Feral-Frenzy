@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 
     public float playerHealth;
     public float playerStamina;
+    public float playerStamRegenDelay;
 
     public float walkMoveSpeed;
     public float sprintMoveSpeed;
@@ -42,14 +43,14 @@ public class Player : MonoBehaviour
 
     private void StaminaChecks()
     {
-        if (playerMovement.isGrounded && !playerMovement.isSprinting && playerStamina < 100f)
+        if (playerMovement.isGrounded && !playerMovement.isSprinting && playerStamina < 100f && Time.time >= playerStamRegenDelay)
         {
             playerStamina += (sprintStaminaCost * 0.5f) * Time.deltaTime;
+        }
 
-            if (playerStamina > 100f)
-            {
-                playerStamina = 100f;
-            }
+        if (playerStamina > 100f)
+        {
+            playerStamina = 100f;
         }
     }
 
@@ -77,5 +78,10 @@ public class Player : MonoBehaviour
         playerHealth = 0f;
         GetComponent<CharacterController>().enabled = false;
         
+    }
+
+    public void SetStamRegenTime()
+    {
+        playerStamRegenDelay = Time.time + 2f;
     }
 }
