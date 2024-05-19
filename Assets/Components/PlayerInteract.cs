@@ -28,9 +28,10 @@ public class PlayerInteract : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                if (hitInfo.transform.tag == "Item")
+                if (hitInfo.transform.tag == "TunaSnack")
                 {
-
+                    player.GetComponent<Player>().GiveTunaSnack();
+                    Destroy(hitInfo.transform.gameObject);
                 }
             }
 
