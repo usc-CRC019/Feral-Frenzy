@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = new Vector3(hInput, 0, vInput);
         moveDirection = transform.TransformDirection(moveDirection);
 
-        if (lastGroundedTime < Time.time + 0.2f && !isFalling)
+        if (lastGroundedTime < Time.time + 0.2f && !isFalling && !isJumping)
         {
             canJump = true;
         }
@@ -243,7 +243,12 @@ public class PlayerMovement : MonoBehaviour
         if (isSprinting)
         {
             playerStats.moveSpeed = playerStats.sprintMoveSpeed;
-            playerStats.playerStamina -= 4f * Time.deltaTime;
+
+            if (moveDirection != Vector3.zero)
+            {
+                playerStats.playerStamina -= 4f * Time.deltaTime;
+            }
+            
         }
         else if (!isJumping)
         {
