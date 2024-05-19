@@ -96,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Space) && isGrounded && playerStats.playerStamina >= playerStats.jumpStaminaCost)
         {
+            wallrunCooldown = Time.time + 0.35f;
             playerStats.JumpStaminaCost();
             currentMoveVector = moveDirection;
             playerVelocity.y = Mathf.Sqrt((playerStats.jumpHeight + builtUpJumpPower) * playerStats.gravityValue);
@@ -254,6 +255,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, characterController.radius * 0.25f, -transform.up, out hit, 0.15f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Editor))
         {
+            //If player hits ground fast enough apply fall damage
+            if (playerVelocity.y < -15f)
+            {
+                playerStats.playerHealth += playerVelocity.y * 0.5f;
+            }
+
+
             isGrounded = true;
             //isFalling = false;
 
@@ -262,6 +270,7 @@ public class PlayerMovement : MonoBehaviour
             isWallrunningLeft = false;
             isWallrunningRight = false;
             currentMoveVector = Vector3.zero;
+            playerVelocity.y = 0f;
             //StopAllCoroutines();
             playerStats.moveSpeed = playerStats.walkMoveSpeed;
         }

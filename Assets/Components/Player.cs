@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     public float gravityValue;
     public float wallrunGravityValue;
 
+    public bool playerAlive;
+
 
     private PlayerMovement playerMovement;
 
@@ -27,6 +29,7 @@ public class Player : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         playerMovement = GetComponent<PlayerMovement>();
+        playerAlive = true;
         
     }
 
@@ -34,14 +37,14 @@ public class Player : MonoBehaviour
     void Update()
     {
         StaminaChecks();
-        Debug.Log(playerStamina);
+        HealthChecks();
     }
 
     private void StaminaChecks()
     {
         if (playerMovement.isGrounded && !playerMovement.isSprinting && playerStamina < 100f)
         {
-            playerStamina += (sprintStaminaCost - 1f) * Time.deltaTime;
+            playerStamina += (sprintStaminaCost * 0.5f) * Time.deltaTime;
 
             if (playerStamina > 100f)
             {
@@ -50,10 +53,29 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void HealthChecks()
+    {
+        if (playerHealth <= 0f)
+        {
+            KillPlayer();
+        }
+
+        if (playerHealth < 100f && playerAlive)
+        {
+            playerHealth += 0.01f * Time.deltaTime;
+        }
+    }
+
     public void JumpStaminaCost()
     {
         playerStamina -= jumpStaminaCost;
     }
 
-    
+    public void KillPlayer()
+    {
+        playerAlive = false;
+        playerHealth = 0f;
+        GetComponent<CharacterController>().enabled = false;
+        
+    }
 }
