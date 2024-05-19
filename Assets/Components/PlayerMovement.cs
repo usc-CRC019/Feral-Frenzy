@@ -82,6 +82,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space) && isGrounded)
         {
+            playerStats.moveSpeed = playerStats.walkMoveSpeed - 1;
+
             if (builtUpJumpPower <= 3f)
             {
                 builtUpJumpPower += 0.01f;
