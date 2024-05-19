@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
 
     private PlayerMovement playerMovement;
 
-    public UI_Level levelUI;
+    public UI_Level playerLevelUI;
 
     // Start is called before the first frame update
     void Start()
@@ -158,7 +158,7 @@ public class Player : MonoBehaviour
             playerLevel = 10;
         }
 
-        levelUI.SetLevelText(playerLevel);
+        playerLevelUI.SetLevelText(playerLevel);
     }
 
     public void TeleportPlayer(GameObject endGate)
