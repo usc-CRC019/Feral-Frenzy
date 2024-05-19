@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
 
     private PlayerMovement playerMovement;
 
+    public UI_Level levelUI;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -102,6 +104,7 @@ public class Player : MonoBehaviour
     {
         playerHealth = 100f;
         playerStamina = 100f;
+        storedXP = 50;
         bankedXP += storedXP;
         storedXP = 0;
         PlayerLevelCalc();
@@ -126,34 +129,36 @@ public class Player : MonoBehaviour
         {
             playerLevel = 3;
         }
-        else if (bankedXP >= 300 && bankedXP <= 499)
+        else if (bankedXP >= 300 && bankedXP <= 399)
         {
             playerLevel = 4;
         }
-        else if (bankedXP >= 500 && bankedXP <= 699)
+        else if (bankedXP >= 400 && bankedXP <= 499)
         {
             playerLevel = 5;
         }
-        else if (bankedXP >= 700 && bankedXP <= 799)
+        else if (bankedXP >= 500 && bankedXP <= 599)
         {
             playerLevel = 6;
         }
-        else if (bankedXP >= 800 && bankedXP <= 899)
+        else if (bankedXP >= 600 && bankedXP <= 699)
         {
             playerLevel = 7;
         }
-        else if (bankedXP >= 900 && bankedXP <= 999)
+        else if (bankedXP >= 700 && bankedXP <= 799)
         {
             playerLevel = 8;
         }
-        else if (bankedXP >= 1000 && bankedXP <= 1099)
+        else if (bankedXP >= 800 && bankedXP <= 899)
         {
             playerLevel = 9;
         }
-        else if (bankedXP >= 1100)
+        else if (bankedXP >= 900)
         {
             playerLevel = 10;
         }
+
+        levelUI.SetLevelText(playerLevel);
     }
 
     public void TeleportPlayer(GameObject endGate)

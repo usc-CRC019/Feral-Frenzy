@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9119184424860130229}
   - component: {fileID: 9119184424860130230}
   - component: {fileID: 9119184424860130231}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Teleporter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6de62e5d5526c04dabee1a93f3ffddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 6085649350059910883, guid: 6221c6ca317ceb84b999004e7e7ed9e6, type: 3}
   endGate: {fileID: 9119184425273668093}
 --- !u!1 &9119184425273668093
 GameObject:
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 9119184425273668082}
   - component: {fileID: 9119184425273668083}
   - component: {fileID: 9119184425273668092}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EndGate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
