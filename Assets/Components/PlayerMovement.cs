@@ -107,8 +107,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isWallrunning)
         {
-            
-
             wallrunCooldown = Time.time + 0.35f;
 
             currentMoveVector = moveDirection;
@@ -151,15 +149,12 @@ public class PlayerMovement : MonoBehaviour
             RaycastHit hitRight;
 
             //Left wall check
-            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.08f, -transform.right, out hitLeft, 0.2f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Editor))
+            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.09f, -transform.right, out hitLeft, 0.19f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
             {
                 if (Input.GetKey(KeyCode.A))
                 {
                     isWallrunningLeft = true;
-                }
-                else
-                {
-                    isWallrunningLeft = false;
+                    moveDirection.y = 0;
                 }
             }
             else
@@ -169,16 +164,12 @@ public class PlayerMovement : MonoBehaviour
             
 
             //Right wall check
-            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.08f, transform.right, out hitRight, 0.2f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Editor))
+            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.09f, transform.right, out hitRight, 0.19f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
             {
                 if (Input.GetKey(KeyCode.D))
                 {
                     isWallrunningRight = true;
-                    
-                }
-                else
-                {
-                    isWallrunningRight = false;
+                    moveDirection.y = 0;
                 }
             }
             else
