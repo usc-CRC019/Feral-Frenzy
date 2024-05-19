@@ -30,7 +30,7 @@ public class UI_StaminaSlider : MonoBehaviour
         else
         {
             //Fade in
-            image.CrossFadeAlpha(1f, 0.5f, false);
+            image.CrossFadeAlpha(1f, 0.2f, false);
         }
     }
 }
