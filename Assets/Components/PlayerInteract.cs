@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class PlayerInteract : MonoBehaviour
 {
@@ -24,9 +21,10 @@ public class PlayerInteract : MonoBehaviour
     {
         RaycastHit hitInfo;
 
-        if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(player.transform.position, player.GetComponent<CharacterController>().height * 0.01f, cam.transform.forward, out hitInfo, 2f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            if (Input.GetKeyDown(KeyCode.F))
+            Physics.queriesHitTriggers = true;
+            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(player.transform.position, player.GetComponent<CharacterController>().height * 0.01f, cam.transform.forward, out hitInfo, 2f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Editor))
             {
                 if (hitInfo.transform.tag == "TunaSnack")
                 {
@@ -39,7 +37,8 @@ public class PlayerInteract : MonoBehaviour
                     player.GetComponent<Player>().HomeVisit();
                 }
             }
-
         }
+
+        Physics.queriesHitTriggers = false;
     }
 }

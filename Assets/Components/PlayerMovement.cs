@@ -164,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
             RaycastHit hitRight;
 
             //Left wall check
-            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.09f, -transform.right, out hitLeft, 0.19f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
+            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.09f, -transform.right, out hitLeft, 0.19f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Editor))
             {
                 if (Input.GetKey(KeyCode.A))
                 {
@@ -179,7 +179,7 @@ public class PlayerMovement : MonoBehaviour
             
 
             //Right wall check
-            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.09f, transform.right, out hitRight, 0.19f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
+            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.09f, transform.right, out hitRight, 0.19f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Editor))
             {
                 if (Input.GetKey(KeyCode.D))
                 {
@@ -260,7 +260,7 @@ public class PlayerMovement : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, characterController.radius * 0.25f, -transform.up, out hit, 0.15f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
+        if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, characterController.radius * 0.25f, -transform.up, out hit, 0.15f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Editor))
         {
             //If player hits ground fast enough apply fall damage
             if (playerVelocity.y < -15f)

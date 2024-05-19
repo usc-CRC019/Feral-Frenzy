@@ -29,13 +29,14 @@ public class Player : MonoBehaviour
 
     public UI_Level playerLevelUI;
 
+
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         playerMovement = GetComponent<PlayerMovement>();
         playerAlive = true;
-        
+        Physics.queriesHitTriggers = false;
     }
 
     // Update is called once per frame
