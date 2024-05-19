@@ -33,6 +33,11 @@ public class PlayerInteract : MonoBehaviour
                     player.GetComponent<Player>().GiveTunaSnack();
                     Destroy(hitInfo.transform.gameObject);
                 }
+
+                if (hitInfo.transform.tag == "PlayerHouse")
+                {
+                    player.GetComponent<Player>().HomeVisit();
+                }
             }
 
         }

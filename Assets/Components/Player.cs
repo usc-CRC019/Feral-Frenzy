@@ -3,6 +3,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public int playerLevel;
+    public int bankedXP;
+    public int storedXP;
     public int reputation;
 
     public float playerHealth;
@@ -94,5 +96,63 @@ public class Player : MonoBehaviour
     {
         playerHealth += 30f;
         playerStamina += 100;
+    }
+
+    public void HomeVisit()
+    {
+        playerHealth = 100f;
+        playerStamina = 100f;
+        bankedXP += storedXP;
+        storedXP = 0;
+        PlayerLevelCalc();
+    }
+
+    public void PlayerLevelCalc()
+    {
+
+        if (bankedXP <= 59)
+        {
+            playerLevel = 0;
+        }
+        else if (bankedXP >= 60 && bankedXP <= 119)
+        {
+            playerLevel = 1;
+        }
+        else if (bankedXP >= 120 && bankedXP <= 199)
+        {
+            playerLevel = 2;
+        }
+        else if (bankedXP >= 200 && bankedXP <= 299)
+        {
+            playerLevel = 3;
+        }
+        else if (bankedXP >= 300 && bankedXP <= 499)
+        {
+            playerLevel = 4;
+        }
+        else if (bankedXP >= 500 && bankedXP <= 699)
+        {
+            playerLevel = 5;
+        }
+        else if (bankedXP >= 700 && bankedXP <= 799)
+        {
+            playerLevel = 6;
+        }
+        else if (bankedXP >= 800 && bankedXP <= 899)
+        {
+            playerLevel = 7;
+        }
+        else if (bankedXP >= 900 && bankedXP <= 999)
+        {
+            playerLevel = 8;
+        }
+        else if (bankedXP >= 1000 && bankedXP <= 1099)
+        {
+            playerLevel = 9;
+        }
+        else if (bankedXP >= 1100)
+        {
+            playerLevel = 10;
+        }
     }
 }
