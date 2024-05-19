@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetKey(KeyCode.Space) && isGrounded)
+        if (Input.GetKey(KeyCode.Space) && isGrounded && playerStats.playerStamina >= playerStats.jumpStaminaCost)
         {
             playerStats.moveSpeed = playerStats.walkMoveSpeed - 1;
 
@@ -94,8 +94,9 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyUp(KeyCode.Space) && isGrounded && playerStats.playerStamina >= playerStats.jumpStaminaCost)
         {
+            playerStats.JumpStaminaCost();
             currentMoveVector = moveDirection;
             playerVelocity.y = Mathf.Sqrt((playerStats.jumpHeight + builtUpJumpPower) * playerStats.gravityValue);
             builtUpJumpPower = 0f;
@@ -224,7 +225,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void SprintCheck()
     {
-        if (isGrounded && Input.GetKey(KeyCode.LeftShift)) 
+        if (isGrounded && Input.GetKey(KeyCode.LeftShift) && playerStats.playerStamina >= 1) 
         {
             isSprinting = true;
         }
@@ -239,6 +240,7 @@ public class PlayerMovement : MonoBehaviour
         if (isSprinting)
         {
             playerStats.moveSpeed = playerStats.sprintMoveSpeed;
+            playerStats.playerStamina -= 4f * Time.deltaTime;
         }
         else if (!isJumping)
         {
