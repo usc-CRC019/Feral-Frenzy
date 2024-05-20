@@ -74,7 +74,7 @@ public class UI_PlayerDeath : MonoBehaviour
     {
         FadeIn();
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2f);
 
         respawnBackground.CrossFadeAlpha(1f, 0f, false);
         respawnImage.CrossFadeAlpha(1f, 0f, false);
@@ -97,7 +97,7 @@ public class UI_PlayerDeath : MonoBehaviour
     {
         FadeIn();
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2f);
 
         respawnBackground.CrossFadeAlpha(0f, 0f, false);
         respawnImage.CrossFadeAlpha(0f, 0f, false);
