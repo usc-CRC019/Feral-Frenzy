@@ -228,6 +228,13 @@ public class PlayerMovement : MonoBehaviour
                 isWallrunningRight = false;
             }
         }
+
+        if (Input.GetKey(KeyCode.LeftControl) && isWallrunning)
+        {
+            wallrunCooldown = Time.time + 0.35f;
+            isWallrunning = false;
+            isFalling = true;
+        }
     }
 
     private void SprintCheck()
