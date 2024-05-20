@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -106,9 +108,7 @@ public class Player : MonoBehaviour
         playerHealth = 100f;
         playerStamina = 100f;
         storedXP = 50;
-        bankedXP += storedXP;
-        storedXP = 0;
-        PlayerLevelCalc();
+        StartCoroutine(XPTrickle());
     }
 
     public void PlayerLevelCalc()
@@ -169,5 +169,16 @@ public class Player : MonoBehaviour
         characterController.enabled = false;
         characterController.transform.position = endGate.transform.position;
         characterController.enabled = true;
+    }
+
+    private IEnumerator XPTrickle()
+    {
+        while (storedXP > 0)
+        {
+            bankedXP++;
+            storedXP--;
+            PlayerLevelCalc();
+            yield return new WaitForSeconds(0.03f);
+        }
     }
 }
