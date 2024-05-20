@@ -21,8 +21,6 @@ public class UI_Level : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
         switch (player.playerLevel)
         {
             case 0:

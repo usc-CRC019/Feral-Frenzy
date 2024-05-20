@@ -85,7 +85,12 @@ public class PlayerMovement : MonoBehaviour
 
         PlayerSmoothSlopeMovement();
 
-        characterController.Move((moveDirection + playerVelocity) * Time.deltaTime);
+        if (characterController.enabled)
+        {
+            characterController.Move((moveDirection + playerVelocity) * Time.deltaTime);
+        }
+
+        
 
         //Debug.Log(isGrounded);
         //Debug.Log(characterController.velocity.magnitude);

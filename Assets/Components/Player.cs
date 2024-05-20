@@ -31,6 +31,9 @@ public class Player : MonoBehaviour
 
     public UI_Level playerLevelUI;
 
+    public GameObject playerDeathUI;
+    public GameObject respawnPoint;
+
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +42,7 @@ public class Player : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         playerAlive = true;
         Physics.queriesHitTriggers = false;
+        playerDeathUI.GetComponent<UI_PlayerDeath>().FadeOut();
     }
 
     // Update is called once per frame
@@ -86,10 +90,21 @@ public class Player : MonoBehaviour
 
     public void KillPlayer()
     {
-        playerAlive = false;
-        playerHealth = 0f;
-        GetComponent<CharacterController>().enabled = false;
-        
+        if (playerAlive)
+        {
+            playerAlive = false;
+            playerHealth = 0f;
+            GetComponent<CharacterController>().enabled = false;
+            playerDeathUI.GetComponent<UI_PlayerDeath>().UI_DeathProcess();
+        }
+    }
+
+    public void RespawnPlayer()
+    {
+        playerAlive = true;
+        playerHealth = 100f;
+        transform.position = respawnPoint.transform.position;
+        GetComponent<CharacterController>().enabled = true;
     }
 
     public void SetStamRegenTime()
