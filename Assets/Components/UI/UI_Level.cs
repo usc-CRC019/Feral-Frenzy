@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,19 +8,20 @@ public class UI_Level : MonoBehaviour
     public GameObject tmp;
     public GameObject fill;
     public GameObject slider;
+    private Image image;
+    private Slider slide;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        slide = slider.GetComponent<Slider>();
+        image = fill.transform.GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        Slider slide = slider.GetComponent<Slider>();
-        Image image = fill.transform.GetComponent<Image>();
 
         switch (player.playerLevel)
         {
@@ -77,8 +79,6 @@ public class UI_Level : MonoBehaviour
             //Fade in
             image.CrossFadeAlpha(1f, 0.5f, false);
         }
-
-
     }
 
     public void SetLevelText(int level)

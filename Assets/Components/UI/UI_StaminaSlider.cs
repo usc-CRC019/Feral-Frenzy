@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,19 +7,21 @@ public class UI_StaminaSlider : MonoBehaviour
     private Player player;
     private Slider slider;
     public GameObject fill;
+    private Image image;
 
     // Start is called before the first frame update
     void Start()
     {
         slider = GetComponent<Slider>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        image = fill.GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
         slider.value = player.playerStamina;
-        Image image = fill.GetComponent<Image>();
+        
 
         if (player.playerStamina <= 0f)
         {
