@@ -40,7 +40,7 @@ public class UI_PlayerDeath : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FadeOut();
+        blackScreen.CrossFadeAlpha(0f, 4f, false);
     }
 
     // Update is called once per frame
@@ -74,7 +74,7 @@ public class UI_PlayerDeath : MonoBehaviour
     {
         FadeIn();
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.05f);
 
         respawnBackground.CrossFadeAlpha(1f, 0f, false);
         respawnImage.CrossFadeAlpha(1f, 0f, false);
@@ -97,7 +97,7 @@ public class UI_PlayerDeath : MonoBehaviour
     {
         FadeIn();
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.05f);
 
         respawnBackground.CrossFadeAlpha(0f, 0f, false);
         respawnImage.CrossFadeAlpha(0f, 0f, false);
