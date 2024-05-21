@@ -63,7 +63,9 @@ public class PlayerMovement : MonoBehaviour
         {
             canJump = false;
         }
-        
+
+        Debug.Log(builtUpJumpPower);
+
         GroundedCheck();
         SprintCheck();
         Sprint();
@@ -104,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetKey(KeyCode.Space) && canJump && playerStats.playerStamina >= playerStats.jumpStaminaCost)
+        if (Input.GetKey(KeyCode.Space) && canJump && playerStats.playerStamina >= playerStats.jumpStaminaCost && !isWallrunning)
         {
             playerStats.moveSpeed = playerStats.walkMoveSpeed - 1;
 
@@ -117,8 +119,12 @@ public class PlayerMovement : MonoBehaviour
                 builtUpJumpPower = 3;
             }
         }
+        else
+        {
+            builtUpJumpPower = 0f;
+        }
 
-        if (Input.GetKeyUp(KeyCode.Space) && canJump && playerStats.playerStamina >= playerStats.jumpStaminaCost)
+        if (Input.GetKeyUp(KeyCode.Space) && canJump && playerStats.playerStamina >= playerStats.jumpStaminaCost && !isWallrunning)
         {
             wallrunCooldown = Time.time + 0.35f;
             playerStats.JumpStaminaCost();
