@@ -119,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
                 builtUpJumpPower = 3;
             }
         }
-        else
+        else if (isJumping)
         {
             builtUpJumpPower = 0f;
         }
