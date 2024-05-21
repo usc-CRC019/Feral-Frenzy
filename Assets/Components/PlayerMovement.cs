@@ -64,8 +64,6 @@ public class PlayerMovement : MonoBehaviour
             canJump = false;
         }
 
-        Debug.Log(builtUpJumpPower);
-
         GroundedCheck();
         SprintCheck();
         Sprint();
@@ -351,7 +349,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void CameraLookAt(GameObject lookAtObject)
     {
-        mainLookAt.transform.position = new Vector3(Mathf.Lerp(mainLookAt.transform.position.x, lookAtObject.transform.position.x, 0.1f), Mathf.Lerp(mainLookAt.transform.position.y, lookAtObject.transform.position.y, 0.1f), Mathf.Lerp(mainLookAt.transform.position.z, lookAtObject.transform.position.z, 0.1f));
+        mainLookAt.transform.position = new Vector3(Mathf.Lerp(mainLookAt.transform.position.x, lookAtObject.transform.position.x, 0.04f), Mathf.Lerp(mainLookAt.transform.position.y, lookAtObject.transform.position.y, 0.04f), Mathf.Lerp(mainLookAt.transform.position.z, lookAtObject.transform.position.z, 0.04f));
     }
 
     private IEnumerator GradualJumpSpeed()
