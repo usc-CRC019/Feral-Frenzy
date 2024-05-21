@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using UnityEngine;
 
@@ -30,6 +31,10 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private GameObject playerCamera;
+    public GameObject mainLookAt;
+    public GameObject centerLookAt;
+    public GameObject leftLookAt;
+    public GameObject rightLookAt;
 
     private Player playerStats;
 
@@ -135,6 +140,7 @@ public class PlayerMovement : MonoBehaviour
             isWallrunning = false;
             isWallrunningLeft = false;
             isWallrunningRight = false;
+            CameraLookAt(centerLookAt);
         }
 
         //Adds movement vector the player had at beginning of jump throughout the jump
@@ -168,6 +174,7 @@ public class PlayerMovement : MonoBehaviour
             RaycastHit hitLeft;
             RaycastHit hitRight;
 
+
             //Left wall check
             if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.09f, -transform.right, out hitLeft, 0.19f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Editor))
             {
@@ -176,6 +183,7 @@ public class PlayerMovement : MonoBehaviour
                     isWallrunningLeft = true;
                     moveDirection.y = 0;
                 }
+                CameraLookAt(rightLookAt);
             }
             else
             {
@@ -191,6 +199,8 @@ public class PlayerMovement : MonoBehaviour
                     isWallrunningRight = true;
                     moveDirection.y = 0;
                 }
+                CameraLookAt(leftLookAt);
+
             }
             else
             {
@@ -226,6 +236,7 @@ public class PlayerMovement : MonoBehaviour
                 isWallrunning = false;
                 isWallrunningLeft = false;
                 isWallrunningRight = false;
+                CameraLookAt(centerLookAt);
             }
         }
 
@@ -283,7 +294,7 @@ public class PlayerMovement : MonoBehaviour
             
             isGrounded = true;
             lastGroundedTime = Time.time;
-
+            CameraLookAt(centerLookAt);
             isJumping = false;
             isWallrunning = false;
             isWallrunningLeft = false;
@@ -302,6 +313,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isGrounded && !isWallrunning && !isJumping)
         {
+            CameraLookAt(centerLookAt);
             if (Time.time > lastGroundedTime + 0.2f)
             {
                 isFalling = true;
@@ -329,6 +341,11 @@ public class PlayerMovement : MonoBehaviour
                 slopeMovementY = 0;
             }
         }
+    }
+
+    private void CameraLookAt(GameObject lookAtObject)
+    {
+        mainLookAt.transform.position = new Vector3(Mathf.Lerp(mainLookAt.transform.position.x, lookAtObject.transform.position.x, 0.1f), Mathf.Lerp(mainLookAt.transform.position.y, lookAtObject.transform.position.y, 0.1f), Mathf.Lerp(mainLookAt.transform.position.z, lookAtObject.transform.position.z, 0.1f));
     }
 
     private IEnumerator GradualJumpSpeed()

@@ -370,7 +370,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 104051327}
-  m_LocalRotation: {x: 0.19625537, y: -3.4836235e-15, z: 6.9723914e-16, w: 0.98055285}
+  m_LocalRotation: {x: 0.19625537, y: 3.4836235e-15, z: -6.9723914e-16, w: 0.98055285}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2214,6 +2214,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 925016854}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &927579925 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3544548986875082603, guid: 6221c6ca317ceb84b999004e7e7ed9e6, type: 3}
+  m_PrefabInstance: {fileID: 6085649349089210198}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2291,7 +2296,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.17838715, y: -0.000000016930398, z: 0.0000000030693976, w: 0.9839604}
+  m_LocalRotation: {x: 0.17838715, y: 0.000000016930398, z: -0.0000000030693976, w: 0.9839604}
   m_LocalPosition: {x: 6.831, y: 3.81, z: 13.959999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3212,6 +3217,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 329369e77b30e5c4d9c682e9e42e88e4, type: 3}
   m_PrefabInstance: {fileID: 1225521196}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1274039699 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1289108712898401645, guid: 6221c6ca317ceb84b999004e7e7ed9e6, type: 3}
+  m_PrefabInstance: {fileID: 6085649349089210198}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1275309442
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3387,6 +3397,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1322178888}
   m_CullTransparentMesh: 1
+--- !u!1 &1348125881 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 155085027866234918, guid: 6221c6ca317ceb84b999004e7e7ed9e6, type: 3}
+  m_PrefabInstance: {fileID: 6085649349089210198}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1352722849
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4062,6 +4077,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 329369e77b30e5c4d9c682e9e42e88e4, type: 3}
   m_PrefabInstance: {fileID: 1493677557}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1529472879 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6085649351016323232, guid: 6221c6ca317ceb84b999004e7e7ed9e6, type: 3}
+  m_PrefabInstance: {fileID: 6085649349089210198}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1557792828
 GameObject:
   m_ObjectHideFlags: 0
@@ -4304,7 +4324,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1624130017}
-  m_LocalRotation: {x: 0.17838715, y: -0.000000016930398, z: 0.0000000030693974, w: 0.9839604}
+  m_LocalRotation: {x: 0.17838715, y: 0.000000016930398, z: -0.0000000030693974, w: 0.9839604}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5672,9 +5692,33 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6085649350059910880, guid: 6221c6ca317ceb84b999004e7e7ed9e6, type: 3}
+      propertyPath: leftLookAt
+      value: 
+      objectReference: {fileID: 1348125881}
+    - target: {fileID: 6085649350059910880, guid: 6221c6ca317ceb84b999004e7e7ed9e6, type: 3}
+      propertyPath: mainLookAt
+      value: 
+      objectReference: {fileID: 1529472879}
+    - target: {fileID: 6085649350059910880, guid: 6221c6ca317ceb84b999004e7e7ed9e6, type: 3}
+      propertyPath: rightLookAt
+      value: 
+      objectReference: {fileID: 1274039699}
+    - target: {fileID: 6085649350059910880, guid: 6221c6ca317ceb84b999004e7e7ed9e6, type: 3}
+      propertyPath: cameraLookAt
+      value: 
+      objectReference: {fileID: 1529472879}
+    - target: {fileID: 6085649350059910880, guid: 6221c6ca317ceb84b999004e7e7ed9e6, type: 3}
+      propertyPath: centerLookAt
+      value: 
+      objectReference: {fileID: 927579925}
+    - target: {fileID: 6085649350059910880, guid: 6221c6ca317ceb84b999004e7e7ed9e6, type: 3}
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 963194225}
+    - target: {fileID: 6085649350059910880, guid: 6221c6ca317ceb84b999004e7e7ed9e6, type: 3}
+      propertyPath: cinemachineSettings
+      value: 
+      objectReference: {fileID: 1382822363}
     - target: {fileID: 6085649350059910881, guid: 6221c6ca317ceb84b999004e7e7ed9e6, type: 3}
       propertyPath: m_SkinWidth
       value: 0.08
