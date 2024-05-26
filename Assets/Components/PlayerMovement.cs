@@ -184,10 +184,17 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.A))
                 {
-                    isWallrunningLeft = true;
-                    moveDirection.y = 0;
+                    if (isJumping || isFalling)
+                    {
+                        isWallrunningLeft = true;
+                        moveDirection.y = 0;
+                        
+                    }
+                    
+
                 }
                 CameraLookAt(rightLookAt);
+
             }
             else
             {
@@ -200,8 +207,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.D))
                 {
-                    isWallrunningRight = true;
-                    moveDirection.y = 0;
+                    if (isJumping || isFalling)
+                    {
+                        isWallrunningRight = true;
+                        moveDirection.y = 0;
+                        
+                    }
+                    
                 }
                 CameraLookAt(leftLookAt);
 
