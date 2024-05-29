@@ -719,7 +719,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 111023897}
-  m_LocalRotation: {x: 0.17362748, y: -0.0074205534, z: 0.0013083211, w: 0.9847826}
+  m_LocalRotation: {x: 0.17362748, y: -0.0074205706, z: 0.0013083243, w: 0.9847826}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4880,7 +4880,7 @@ MonoBehaviour:
   m_MaximumEffort: 4
   m_SmoothingTime: 0
   m_Damping: 1
-  m_DampingWhenOccluded: 0
+  m_DampingWhenOccluded: 1
   m_OptimalTargetDistance: 0
 --- !u!1 &1402949792
 GameObject:
