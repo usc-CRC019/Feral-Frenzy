@@ -1,6 +1,8 @@
+using Cinemachine;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -34,6 +36,9 @@ public class Player : MonoBehaviour
     public GameObject playerDeathUI;
     public GameObject respawnPoint;
 
+    public GameObject mainCam;
+    public Image reticle;
+
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +48,7 @@ public class Player : MonoBehaviour
         playerAlive = true;
         Physics.queriesHitTriggers = false;
         playerDeathUI.GetComponent<UI_PlayerDeath>().FadeOut();
+        
     }
 
     // Update is called once per frame
@@ -50,6 +56,7 @@ public class Player : MonoBehaviour
     {
         StaminaChecks();
         HealthChecks();
+        Aim();
     }
 
     private void StaminaChecks()
@@ -80,6 +87,20 @@ public class Player : MonoBehaviour
         if (playerHealth < 100f && playerAlive)
         {
             playerHealth += 0.01f * Time.deltaTime;
+        }
+    }
+
+    private void Aim()
+    {
+        if (!playerMovement.isWallrunning && !playerMovement.isJumping && Input.GetKey(KeyCode.Mouse1))
+        {
+            mainCam.GetComponent<CinemachineFreeLook>().m_Lens.FieldOfView = Mathf.MoveTowards(mainCam.GetComponent<CinemachineFreeLook>().m_Lens.FieldOfView, 25f, 0.2f);
+            reticle.CrossFadeAlpha(1f, 0.1f, false);
+        }
+        else
+        {
+            mainCam.GetComponent<CinemachineFreeLook>().m_Lens.FieldOfView = Mathf.MoveTowards(mainCam.GetComponent<CinemachineFreeLook>().m_Lens.FieldOfView, 40f, 0.2f);
+            reticle.CrossFadeAlpha(0f, 0.1f, false);
         }
     }
 
