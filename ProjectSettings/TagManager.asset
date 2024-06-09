@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TunaSnack
   - PlayerHouse
+  - Enemy
   layers:
   - Default
   - TransparentFX
