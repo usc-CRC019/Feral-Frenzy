@@ -124,6 +124,7 @@ public class Player : MonoBehaviour
     {
         playerAlive = true;
         playerHealth = 100f;
+        playerStamina = 100f;
         transform.position = respawnPoint.transform.position;
         GetComponent<CharacterController>().enabled = true;
     }
