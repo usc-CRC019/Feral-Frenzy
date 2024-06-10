@@ -605,7 +605,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 111023897}
-  m_LocalRotation: {x: 0.17362748, y: -0.0074205534, z: 0.0013083211, w: 0.9847826}
+  m_LocalRotation: {x: 0.17362748, y: -0.0074205706, z: 0.0013083243, w: 0.9847826}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7981,7 +7981,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1624130017}
-  m_LocalRotation: {x: 0.19146428, y: -0.0073956144, z: 0.0014427287, w: 0.9814707}
+  m_LocalRotation: {x: 0.19146428, y: -0.0073956144, z: 0.0014427286, w: 0.9814707}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11531,8 +11531,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1615747594046181851, guid: 2c11ea8c0995d7242881a68860334dd8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039822090892679660, guid: 2c11ea8c0995d7242881a68860334dd8, type: 3}
+      propertyPath: m_Name
+      value: TunaSnack
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c11ea8c0995d7242881a68860334dd8, type: 3}
+--- !u!1 &1615747593518941836 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6400295346320582410, guid: 2c11ea8c0995d7242881a68860334dd8, type: 3}
+  m_PrefabInstance: {fileID: 1615747593518941835}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1615747593518941837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615747593518941836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6063f071aec801f46b152349b951e57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6085649349089210198
 PrefabInstance:
   m_ObjectHideFlags: 0
