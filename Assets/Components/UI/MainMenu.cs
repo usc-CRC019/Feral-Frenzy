@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour
     // Loads scene based on build settings hierarchy when play button is clicked
     public void PlayGame()
     {
-        SceneManager.LoadSceneAsync(1);
+        SceneManager.LoadSceneAsync(3);
     }
 
     public void QuitGame()
