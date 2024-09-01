@@ -287,6 +287,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0197a9c50a9f5734b9f852ad6b0459af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPistol: {fileID: 0}
+  bulletProjectile: {fileID: 0}
+  pistolBarrel: {fileID: 0}
 --- !u!114 &6085649350059910891
 MonoBehaviour:
   m_ObjectHideFlags: 0
