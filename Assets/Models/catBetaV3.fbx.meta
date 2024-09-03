@@ -1,9 +1,29 @@
 fileFormatVersion: 2
-guid: 2ebe695a51277bd499774bff67a416e3
+guid: 7a008c8d86107b042b9b352e99c1da48
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BodyA
+    second: {fileID: 2100000, guid: 2f871878d65ef404daf2273f6e469584, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BotWear02_A
+    second: {fileID: 2100000, guid: 16eeec63de155ea45803fe4487b1d12e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: HeadWear01_A
+    second: {fileID: 2100000, guid: aac0d955c8e200641916320100c57cb0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TopWear01_A
+    second: {fileID: 2100000, guid: 93c56cd985370df42a9992f0909a35bf, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -35,7 +55,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.05
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -88,7 +108,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 0.05
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
