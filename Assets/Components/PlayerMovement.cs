@@ -195,6 +195,11 @@ public class PlayerMovement : MonoBehaviour
                 }
                 CameraLookAt(rightLookAt);
 
+
+                //this.transform.rotation = Quaternion.FromToRotation(-transform.forward, hitLeft.normal);
+
+                //this.transform.rotation = Quaternion.Euler(0, hitLeft.transform.eulerAngles.y, 0);
+                transform.rotation = Quaternion.FromToRotation(Vector3.right, hitLeft.normal);
             }
             else
             {
@@ -217,6 +222,11 @@ public class PlayerMovement : MonoBehaviour
                 }
                 CameraLookAt(leftLookAt);
 
+
+                //this.transform.rotation = Quaternion.FromToRotation(-transform.forward, hitRight.normal);
+
+                //this.transform.rotation = Quaternion.Euler(0, hitRight.transform.eulerAngles.y, 0);
+                transform.rotation = Quaternion.FromToRotation(-Vector3.right, hitRight.normal);
             }
             else
             {
