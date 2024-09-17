@@ -52,6 +52,12 @@ public class PlayerMovement : MonoBehaviour
         var hInput = Input.GetAxis("Horizontal");
         var vInput = Input.GetAxis("Vertical");
 
+        if (isWallrunning)
+        {
+            hInput = 0f;
+            vInput = 0f;
+        }
+
         moveDirection = new Vector3(hInput, 0, vInput);
         moveDirection = transform.TransformDirection(moveDirection);
 
@@ -77,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
             this.transform.rotation = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0);
         }
         
+        
 
         moveDirection = moveDirection * playerStats.moveSpeed;
         moveDirection = Vector3.ClampMagnitude(moveDirection, playerStats.moveSpeed);
@@ -98,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
         
 
         //Debug.Log(isGrounded);
-        //Debug.Log(characterController.velocity.magnitude);
+        Debug.Log(characterController.velocity.magnitude);
     }
 
 
@@ -252,7 +259,8 @@ public class PlayerMovement : MonoBehaviour
 
                 playerVelocity.y = 0;
                 StartCoroutine(GradualJumpSpeed());
-                characterController.Move((currentMoveVector * playerStats.sprintMoveSpeed) * Time.deltaTime);
+                //characterController.Move((currentMoveVector * playerStats.sprintMoveSpeed) * Time.deltaTime);
+                characterController.Move((transform.forward * playerStats.sprintMoveSpeed) * Time.deltaTime);
                 isWallrunning = true;
                 isJumping = false;
             }
