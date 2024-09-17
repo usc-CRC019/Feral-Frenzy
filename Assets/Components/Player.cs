@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     public float jumpStaminaCost;
     public float sprintStaminaCost;
     public float gravityValue;
-    public float wallrunGravityValue;
+    public float wallclimbGravityValue;
 
     public bool playerAlive;
 

@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumping;
     public bool isWallrunning;
     public bool isFalling;
+    public bool isWallClimbing;
 
     public bool canJump;
 
@@ -20,6 +21,12 @@ public class PlayerMovement : MonoBehaviour
     private float wallrunStartTime;
     bool isWallrunningLeft;
     bool isWallrunningRight;
+
+    private float wallClimbStoredTime;
+
+    private RaycastHit hitLeft;
+    private RaycastHit hitRight;
+    private RaycastHit hitFront;
 
     public Vector3 currentMoveVector;
 
@@ -58,6 +65,11 @@ public class PlayerMovement : MonoBehaviour
             vInput = 0f;
         }
 
+        if (isWallClimbing)
+        {
+            hInput = 0f;
+        }
+
         moveDirection = new Vector3(hInput, 0, vInput);
         moveDirection = transform.TransformDirection(moveDirection);
 
@@ -76,9 +88,10 @@ public class PlayerMovement : MonoBehaviour
         Wallrun();
         Jump();
         FallingCheck();
+        WallClimb();
 
         //rotate player to match camera rotation unless wallrunning
-        if (!isWallrunning)
+        if (!isWallrunning && !isWallClimbing)
         {
             this.transform.rotation = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0);
         }
@@ -105,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
         
 
         //Debug.Log(isGrounded);
-        Debug.Log(characterController.velocity.magnitude);
+        //Debug.Log(characterController.velocity.magnitude);
     }
 
 
@@ -180,17 +193,18 @@ public class PlayerMovement : MonoBehaviour
     private void Wallrun()
     {
 
-        if (!isGrounded && wallrunCooldown <= Time.time)
+        if (!isGrounded && wallrunCooldown <= Time.time && !isWallClimbing)
         {
-            RaycastHit hitLeft;
-            RaycastHit hitRight;
+            
 
 
             //Left wall check
-            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.09f, -transform.right, out hitLeft, 0.19f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Editor))
+            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.09f, -transform.right, out hitLeft, 0.19f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
             {
                 if (Input.GetKey(KeyCode.A))
                 {
+                    CameraLookAt(rightLookAt);
+
                     if (isJumping || isFalling)
                     {
                         isWallrunningLeft = true;
@@ -200,9 +214,7 @@ public class PlayerMovement : MonoBehaviour
                     
 
                 }
-                CameraLookAt(rightLookAt);
-
-
+               
                 //this.transform.rotation = Quaternion.FromToRotation(-transform.forward, hitLeft.normal);
 
                 //this.transform.rotation = Quaternion.Euler(0, hitLeft.transform.eulerAngles.y, 0);
@@ -215,10 +227,12 @@ public class PlayerMovement : MonoBehaviour
             
 
             //Right wall check
-            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.09f, transform.right, out hitRight, 0.19f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Editor))
+            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.09f, transform.right, out hitRight, 0.19f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
             {
                 if (Input.GetKey(KeyCode.D))
                 {
+                    CameraLookAt(leftLookAt);
+
                     if (isJumping || isFalling)
                     {
                         isWallrunningRight = true;
@@ -227,9 +241,7 @@ public class PlayerMovement : MonoBehaviour
                     }
                     
                 }
-                CameraLookAt(leftLookAt);
-
-
+                
                 //this.transform.rotation = Quaternion.FromToRotation(-transform.forward, hitRight.normal);
 
                 //this.transform.rotation = Quaternion.Euler(0, hitRight.transform.eulerAngles.y, 0);
@@ -391,5 +403,49 @@ public class PlayerMovement : MonoBehaviour
         }
 
         playerStats.moveSpeed = playerStats.sprintMoveSpeed;
+    }
+
+    public void WallClimb()
+    {
+        
+        float defaultGravity = 12;
+
+        if (isGrounded || isJumping || isFalling)
+        {
+            if (Input.GetKey(KeyCode.W) && wallClimbStoredTime > 0f && RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.09f, transform.forward, out hitFront, 0.19f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
+            {
+                currentMoveVector = new Vector3(0, 0, 0);
+                defaultGravity = playerStats.gravityValue;
+                playerStats.gravityValue = playerStats.wallclimbGravityValue;
+                transform.rotation = Quaternion.FromToRotation(-Vector3.forward, hitFront.normal);
+                isWallClimbing = true;
+            }
+            else
+            {
+                playerStats.gravityValue = defaultGravity;
+                isWallClimbing = false;
+            }
+        }
+
+        if (isWallClimbing)
+        {
+            wallClimbStoredTime -= 1f * Time.deltaTime;
+
+            if (wallClimbStoredTime <= 0)
+            {
+                wallClimbStoredTime = 0;
+            }
+        }
+        else
+        {
+            wallClimbStoredTime += 0.5f * Time.deltaTime;
+
+            if (wallClimbStoredTime >= 3f)
+            {
+                wallClimbStoredTime = 3f;
+            }
+        }
+
+        Debug.Log(wallClimbStoredTime);
     }
 }
