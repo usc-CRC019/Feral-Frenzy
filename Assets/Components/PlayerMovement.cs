@@ -414,12 +414,30 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W) && wallClimbStoredTime > 0f && RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.09f, transform.forward, out hitFront, 0.19f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
             {
-                currentMoveVector = new Vector3(0, 0, 0);
-                defaultGravity = playerStats.gravityValue;
-                playerStats.gravityValue = playerStats.wallclimbGravityValue;
-                //transform.rotation = Quaternion.FromToRotation(-Vector3.forward, hitFront.normal);
-                isWallClimbing = true;
-                isGrounded = false;
+                if (playerVelocity.y < -10)
+                {
+                    currentMoveVector = new Vector3(0, 0, 0);
+                    defaultGravity = playerStats.gravityValue;
+                    playerStats.gravityValue = playerStats.wallclimbGravityValue;
+                    //transform.rotation = Quaternion.FromToRotation(-Vector3.forward, hitFront.normal);
+                    isWallClimbing = true;
+                    isGrounded = false;
+                }
+                else
+                {
+                    if (!isWallClimbing && wallClimbStoredTime > 0.5f)
+                    {
+                        playerVelocity.y = 0;
+                    }
+                    
+                    currentMoveVector = new Vector3(0, 0, 0);
+                    defaultGravity = playerStats.gravityValue;
+                    playerStats.gravityValue = playerStats.wallclimbGravityValue;
+                    //transform.rotation = Quaternion.FromToRotation(-Vector3.forward, hitFront.normal);
+                    isWallClimbing = true;
+                    isGrounded = false;
+                }
+                
             }
             else
             {
@@ -447,6 +465,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        Debug.Log(wallClimbStoredTime);
+        //Debug.Log(wallClimbStoredTime);
+        Debug.Log(playerVelocity.y);
     }
 }
