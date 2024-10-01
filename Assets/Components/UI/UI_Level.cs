@@ -21,47 +21,59 @@ public class UI_Level : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (player.playerLevel)
+        //switch (player.playerLevel)
+        //{
+        //    case 0:
+        //        slide.minValue = 0;
+        //        slide.maxValue = 59;
+        //        break;
+        //    case 1:
+        //        slide.minValue = 60;
+        //        slide.maxValue = 119;
+        //        break;
+        //    case 2:
+        //        slide.minValue = 120;
+        //        slide.maxValue = 199;
+        //        break;
+        //    case 3:
+        //        slide.minValue = 200;
+        //        slide.maxValue = 299;
+        //        break;
+        //    case 4:
+        //        slide.minValue = 300;
+        //        slide.maxValue = 399;
+        //        break;
+        //    case 5:
+        //        slide.minValue = 400;
+        //        slide.maxValue = 499;
+        //        break;
+        //    case 6:
+        //        slide.minValue = 500;
+        //        slide.maxValue = 599;
+        //        break;
+        //    case 7:
+        //        slide.minValue = 600;
+        //        slide.maxValue = 699;
+        //        break;
+        //    case 8:
+        //        slide.minValue = 700;
+        //        slide.maxValue = 799;
+        //        break;
+        //    case 9:
+        //        slide.minValue = 800;
+        //        slide.maxValue = 899;
+        //        break;
+        //}
+
+        switch (player.currentLevel)
         {
-            case 0:
+            default:
                 slide.minValue = 0;
-                slide.maxValue = 59;
+                slide.maxValue = 50;
                 break;
-            case 1:
-                slide.minValue = 60;
-                slide.maxValue = 119;
-                break;
-            case 2:
-                slide.minValue = 120;
-                slide.maxValue = 199;
-                break;
-            case 3:
-                slide.minValue = 200;
-                slide.maxValue = 299;
-                break;
-            case 4:
-                slide.minValue = 300;
-                slide.maxValue = 399;
-                break;
-            case 5:
-                slide.minValue = 400;
-                slide.maxValue = 499;
-                break;
-            case 6:
-                slide.minValue = 500;
-                slide.maxValue = 599;
-                break;
-            case 7:
-                slide.minValue = 600;
-                slide.maxValue = 699;
-                break;
-            case 8:
-                slide.minValue = 700;
-                slide.maxValue = 799;
-                break;
-            case 9:
-                slide.minValue = 800;
-                slide.maxValue = 899;
+            case "Level1":
+                slide.minValue = 0;
+                slide.maxValue = 250;
                 break;
         }
 

@@ -3,6 +3,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -39,6 +40,8 @@ public class Player : MonoBehaviour
     public GameObject mainCam;
     public Image reticle;
 
+    public string currentLevel;
+
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +51,8 @@ public class Player : MonoBehaviour
         playerAlive = true;
         Physics.queriesHitTriggers = false;
         playerDeathUI.GetComponent<UI_PlayerDeath>().FadeOut();
-        
+
+        currentLevel = SceneManager.GetActiveScene().name;
     }
 
     // Update is called once per frame
@@ -144,57 +148,59 @@ public class Player : MonoBehaviour
     {
         playerHealth = 100f;
         playerStamina = 100f;
-        storedXP = 50;
+        storedXP = 150;
         StartCoroutine(XPTrickle());
     }
 
     public void PlayerLevelCalc()
     {
 
-        if (bankedXP <= 59)
+        if (bankedXP <= 50)
         {
             playerLevel = 0;
         }
-        else if (bankedXP >= 60 && bankedXP <= 119)
+        else if (bankedXP >= 51 && bankedXP <= 99)
         {
             playerLevel = 1;
         }
-        else if (bankedXP >= 120 && bankedXP <= 199)
+        else if (bankedXP >= 100 && bankedXP <= 149)
         {
             playerLevel = 2;
         }
-        else if (bankedXP >= 200 && bankedXP <= 299)
+        else if (bankedXP >= 150 && bankedXP <= 199)
         {
             playerLevel = 3;
         }
-        else if (bankedXP >= 300 && bankedXP <= 399)
+        else if (bankedXP >= 200 && bankedXP <= 249)
         {
             playerLevel = 4;
         }
-        else if (bankedXP >= 400 && bankedXP <= 499)
+        else if (bankedXP >= 250 && bankedXP <= 299)
         {
             playerLevel = 5;
         }
-        else if (bankedXP >= 500 && bankedXP <= 599)
+        else if (bankedXP >= 300 && bankedXP <= 349)
         {
             playerLevel = 6;
         }
-        else if (bankedXP >= 600 && bankedXP <= 699)
+        else if (bankedXP >= 350 && bankedXP <= 399)
         {
             playerLevel = 7;
         }
-        else if (bankedXP >= 700 && bankedXP <= 799)
+        else if (bankedXP >= 400 && bankedXP <= 449)
         {
             playerLevel = 8;
         }
-        else if (bankedXP >= 800 && bankedXP <= 899)
+        else if (bankedXP >= 450 && bankedXP <= 499)
         {
             playerLevel = 9;
         }
-        else if (bankedXP >= 900)
+        else if (bankedXP >= 500)
         {
             playerLevel = 10;
         }
+
+        
 
         playerLevelUI.SetLevelText(playerLevel);
     }

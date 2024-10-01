@@ -417,8 +417,9 @@ public class PlayerMovement : MonoBehaviour
                 currentMoveVector = new Vector3(0, 0, 0);
                 defaultGravity = playerStats.gravityValue;
                 playerStats.gravityValue = playerStats.wallclimbGravityValue;
-                transform.rotation = Quaternion.FromToRotation(-Vector3.forward, hitFront.normal);
+                //transform.rotation = Quaternion.FromToRotation(-Vector3.forward, hitFront.normal);
                 isWallClimbing = true;
+                isGrounded = false;
             }
             else
             {
