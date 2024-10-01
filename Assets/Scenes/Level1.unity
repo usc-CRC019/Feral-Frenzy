@@ -8533,6 +8533,71 @@ RectTransform:
   m_AnchoredPosition: {x: -0.000015259, y: -115}
   m_SizeDelta: {x: 394.0327, y: 212.6174}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &1591152895
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -1143134570345430170, guid: 2c11ea8c0995d7242881a68860334dd8, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1214576472}
+    - target: {fileID: 1615747594046181828, guid: 2c11ea8c0995d7242881a68860334dd8, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1615747594046181830, guid: 2c11ea8c0995d7242881a68860334dd8, type: 3}
+      propertyPath: m_Name
+      value: TunaSnack
+      objectReference: {fileID: 0}
+    - target: {fileID: 1615747594046181849, guid: 2c11ea8c0995d7242881a68860334dd8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -332.72922
+      objectReference: {fileID: 0}
+    - target: {fileID: 1615747594046181849, guid: 2c11ea8c0995d7242881a68860334dd8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 16.697
+      objectReference: {fileID: 0}
+    - target: {fileID: 1615747594046181849, guid: 2c11ea8c0995d7242881a68860334dd8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 1615747594046181849, guid: 2c11ea8c0995d7242881a68860334dd8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1615747594046181849, guid: 2c11ea8c0995d7242881a68860334dd8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1615747594046181849, guid: 2c11ea8c0995d7242881a68860334dd8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1615747594046181849, guid: 2c11ea8c0995d7242881a68860334dd8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1615747594046181849, guid: 2c11ea8c0995d7242881a68860334dd8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1615747594046181849, guid: 2c11ea8c0995d7242881a68860334dd8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1615747594046181849, guid: 2c11ea8c0995d7242881a68860334dd8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2c11ea8c0995d7242881a68860334dd8, type: 3}
 --- !u!1 &1609999631
 GameObject:
   m_ObjectHideFlags: 0
@@ -10436,6 +10501,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 356877228}
     - target: {fileID: 6085649350059910890, guid: 6221c6ca317ceb84b999004e7e7ed9e6, type: 3}
+      propertyPath: storedXP
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6085649350059910890, guid: 6221c6ca317ceb84b999004e7e7ed9e6, type: 3}
       propertyPath: RespawnPoint
       value: 
       objectReference: {fileID: 1837874355}
@@ -10517,6 +10586,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6085649350059910894, guid: 6221c6ca317ceb84b999004e7e7ed9e6, type: 3}
       propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6085649350059910894, guid: 6221c6ca317ceb84b999004e7e7ed9e6, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6085649350059910895, guid: 6221c6ca317ceb84b999004e7e7ed9e6, type: 3}
@@ -11688,3 +11761,4 @@ SceneRoots:
   - {fileID: 563985676}
   - {fileID: 938828759}
   - {fileID: 1061380469}
+  - {fileID: 1591152895}
