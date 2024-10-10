@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    public int playerLevel;
+    public int playerTunaSnackCount;
     public int bankedXP;
     public int storedXP;
     public int reputation;
@@ -143,7 +143,7 @@ public class Player : MonoBehaviour
         playerHealth = 100f;
         playerStamina = 100f;
         storedXP = 50;
-        playerLevel++;
+        playerTunaSnackCount++;
         StartCoroutine(XPTrickle());
     }
 
@@ -205,7 +205,7 @@ public class Player : MonoBehaviour
 
         
 
-        playerLevelUI.SetLevelText(playerLevel);
+        playerLevelUI.SetLevelText(playerTunaSnackCount);
     }
 
     public void TeleportPlayer(GameObject endGate)
@@ -226,5 +226,15 @@ public class Player : MonoBehaviour
             PlayerLevelCalc();
             yield return new WaitForSeconds(0.03f);
         }
+    }
+
+    public void RestartCurrentLevel()
+    {
+        playerTunaSnackCount = 0;
+        bankedXP = 0;
+        PlayerLevelCalc();
+        playerHealth = 100;
+        playerStamina = 100;
+        RespawnPlayer();
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class UI_Level : MonoBehaviour
 {
     public Player player;
+    public LevelHandler levelHandler;
     public GameObject tmp;
     public GameObject fill;
     public GameObject slider;
@@ -73,7 +74,7 @@ public class UI_Level : MonoBehaviour
                 break;
             case "Level1":
                 slide.minValue = 0;
-                slide.maxValue = 250;
+                slide.maxValue = levelHandler.level1_SnackCount * 50;
                 break;
         }
 
