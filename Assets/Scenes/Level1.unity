@@ -3537,6 +3537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1214576473}
+  levelHandler: {fileID: 1214576476}
   tmp: {fileID: 12582307}
   fill: {fileID: 1884637980}
   slider: {fileID: 1721180836}
@@ -7069,6 +7070,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1214576476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214576472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02ba1e4a005645c45b6630c80e21290e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1214576473}
+  level1_SnackCount: 5
+  level2_SnackCount: 7
 --- !u!1 &1215006205
 GameObject:
   m_ObjectHideFlags: 0
@@ -10636,6 +10652,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1716220066}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6085649350059910883, guid: 6221c6ca317ceb84b999004e7e7ed9e6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1214576476}
     - targetCorrespondingSourceObject: {fileID: 6085649350059910883, guid: 6221c6ca317ceb84b999004e7e7ed9e6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1214576475}
