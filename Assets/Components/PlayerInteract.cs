@@ -21,10 +21,10 @@ public class PlayerInteract : MonoBehaviour
     {
         RaycastHit hitInfo;
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             Physics.queriesHitTriggers = true;
-            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(player.transform.position, player.GetComponent<CharacterController>().height * 0.01f, cam.transform.forward, out hitInfo, 2f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Editor))
+            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(player.transform.position, player.GetComponent<CharacterController>().height * 0.01f, cam.transform.forward, out hitInfo, 2f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
             {
                 if (hitInfo.transform.tag == "TunaSnack")
                 {

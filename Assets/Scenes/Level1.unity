@@ -8553,6 +8553,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TunaSnack
       objectReference: {fileID: 0}
+    - target: {fileID: 1615747594046181830, guid: 2c11ea8c0995d7242881a68860334dd8, type: 3}
+      propertyPath: m_TagString
+      value: TunaSnack
+      objectReference: {fileID: 0}
     - target: {fileID: 1615747594046181849, guid: 2c11ea8c0995d7242881a68860334dd8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -332.72922

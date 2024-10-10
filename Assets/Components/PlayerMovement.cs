@@ -65,10 +65,10 @@ public class PlayerMovement : MonoBehaviour
             vInput = 0f;
         }
 
-        if (isWallClimbing)
-        {
-            hInput = 0f;
-        }
+        //if (isWallClimbing)
+        //{
+        //    hInput = 0f;
+        //}
 
         moveDirection = new Vector3(hInput, 0, vInput);
         moveDirection = transform.TransformDirection(moveDirection);
@@ -465,7 +465,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        //Debug.Log(wallClimbStoredTime);
-        Debug.Log(playerVelocity.y);
+        Debug.Log(wallClimbStoredTime);
+        //Debug.Log(playerVelocity.y);
     }
 }
