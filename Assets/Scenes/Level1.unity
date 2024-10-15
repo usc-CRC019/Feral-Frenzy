@@ -16843,6 +16843,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6085649350059910890, guid: 6221c6ca317ceb84b999004e7e7ed9e6, type: 3}
+      propertyPath: timer
+      value: 
+      objectReference: {fileID: 1652851020}
+    - target: {fileID: 6085649350059910890, guid: 6221c6ca317ceb84b999004e7e7ed9e6, type: 3}
       propertyPath: levelUI
       value: 
       objectReference: {fileID: 591173373}

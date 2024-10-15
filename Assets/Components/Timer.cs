@@ -104,6 +104,14 @@ public class Timer : MonoBehaviour
         
 
     }
+
+    public void RestartTimer()
+    {
+        isActive = false;
+        currentSeconds = 0f;
+        currentMinutes = 0;
+        currentHours = 0;
+    }
 }
 
 public enum TimerFormats

@@ -42,6 +42,8 @@ public class Player : MonoBehaviour
 
     public string currentLevel;
 
+    public Timer timer;
+
 
     // Start is called before the first frame update
     void Start()
@@ -235,6 +237,7 @@ public class Player : MonoBehaviour
         PlayerLevelCalc();
         playerHealth = 100;
         playerStamina = 100;
+        timer.RestartTimer();
         RespawnPlayer();
     }
 }
