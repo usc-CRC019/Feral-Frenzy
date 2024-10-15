@@ -9,7 +9,9 @@ public class Timer : MonoBehaviour
     public TextMeshProUGUI timerText;
 
     [Header("Timer Settings")]
-    public float currentTime;
+    public float currentSeconds;
+    public int currentMinutes;
+    public int currentHours;
     public bool countDown;
 
     [Header("Limit Settings")]
@@ -21,11 +23,18 @@ public class Timer : MonoBehaviour
     public TimerFormats format;
     private Dictionary<TimerFormats, string> timeFormats = new Dictionary<TimerFormats, string>();
 
+    private bool hitMinute;
+    private bool hitHour;
+
      void Start()
     {
         timeFormats.Add(TimerFormats.Whole, "0");
         timeFormats.Add(TimerFormats.TenthDecimal, "0.0");
         timeFormats.Add(TimerFormats.HundrethsDecimal, "0.00");
+        timeFormats.Add(TimerFormats.Dbl, "00");
+
+        hitMinute = false;
+        hitHour = false;
     }
 
  
@@ -33,11 +42,26 @@ public class Timer : MonoBehaviour
     {
         // Functionality for timer - can count down or count up, can set limit or run infinitely
 
-        currentTime = countDown ? currentTime -= Time.deltaTime : currentTime += Time.deltaTime;
+        currentSeconds = countDown ? currentSeconds -= Time.deltaTime : currentSeconds += Time.deltaTime;
 
-        if(hasLimit && ((countDown && currentTime <= timerLimit) || (!countDown && currentTime >= timerLimit)))
+        if (currentSeconds >= 60)
         {
-            currentTime = timerLimit;
+            currentMinutes++;
+            hitMinute = true;
+            currentSeconds = 0;
+        }
+
+        if (currentMinutes >= 60)
+        {
+            currentHours++;
+            hitHour = true;
+            currentMinutes = 0;
+        }
+
+
+        if(hasLimit && ((countDown && currentSeconds <= timerLimit) || (!countDown && currentSeconds >= timerLimit)))
+        {
+            currentSeconds = timerLimit;
             SetTimerText();
             enabled = false;
         }
@@ -50,7 +74,30 @@ public class Timer : MonoBehaviour
     {
         //Functionality for decimal formatting
 
-        timerText.text = hasFormat ? currentTime.ToString(timeFormats[format]) : currentTime.ToString();
+        //timerText.text = hasFormat ? currentSeconds.ToString(timeFormats[format]) : currentSeconds.ToString();
+
+        if (hasFormat)
+        {
+            if (hitMinute)
+            {
+                timerText.text = currentMinutes.ToString(timeFormats[TimerFormats.Dbl]) + ":" + currentSeconds.ToString(timeFormats[TimerFormats.Dbl]);
+            }
+            else if (hitHour)
+            {
+                timerText.text = currentHours.ToString(timeFormats[TimerFormats.Dbl]) + ":" + currentMinutes.ToString(timeFormats[TimerFormats.Dbl]) + ":" + currentSeconds.ToString(timeFormats[TimerFormats.Dbl]);
+            }
+            else
+            {
+                timerText.text = currentSeconds.ToString(timeFormats[format]);
+            }
+        }
+        else
+        {
+            timerText.text = currentHours.ToString(timeFormats[TimerFormats.Dbl]) + ":" + currentMinutes.ToString(timeFormats[TimerFormats.Dbl]) + ":" + currentSeconds.ToString();
+        }
+
+        
+
     }
 }
 
@@ -59,4 +106,5 @@ public enum TimerFormats
     Whole,
     TenthDecimal,
     HundrethsDecimal,
+    Dbl,
 }
