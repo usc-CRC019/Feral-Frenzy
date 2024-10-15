@@ -108,6 +108,8 @@ public class Timer : MonoBehaviour
     public void RestartTimer()
     {
         isActive = false;
+        hitMinute = false;
+        hitHour = false;
         currentSeconds = 0f;
         currentMinutes = 0;
         currentHours = 0;
