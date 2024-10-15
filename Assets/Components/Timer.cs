@@ -13,6 +13,7 @@ public class Timer : MonoBehaviour
     public int currentMinutes;
     public int currentHours;
     public bool countDown;
+    public bool isActive;
 
     [Header("Limit Settings")]
     public bool hasLimit;
@@ -35,14 +36,18 @@ public class Timer : MonoBehaviour
 
         hitMinute = false;
         hitHour = false;
+        isActive = false;
     }
 
  
     void Update()
     {
         // Functionality for timer - can count down or count up, can set limit or run infinitely
-
-        currentSeconds = countDown ? currentSeconds -= Time.deltaTime : currentSeconds += Time.deltaTime;
+        if (isActive)
+        {
+            currentSeconds = countDown ? currentSeconds -= Time.deltaTime : currentSeconds += Time.deltaTime;
+        }
+        
 
         if (currentSeconds >= 60)
         {

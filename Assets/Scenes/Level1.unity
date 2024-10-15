@@ -2566,6 +2566,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 885027a95a7f92a4e97c92a4dc8d7f73, type: 3}
   - {fileID: 21300000, guid: 351f0d018822d6a4fbac97f5bef292ff, type: 3}
   - {fileID: 21300000, guid: 885027a95a7f92a4e97c92a4dc8d7f73, type: 3}
+  timer: {fileID: 1652851020}
 --- !u!65 &276766262
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14285,8 +14286,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 2057360320}
-  currentTime: 0
+  currentSeconds: 0
+  currentMinutes: 0
+  currentHours: 0
   countDown: 0
+  isActive: 0
   hasLimit: 0
   timerLimit: 0
   hasFormat: 1

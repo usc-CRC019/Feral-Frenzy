@@ -35,6 +35,8 @@ public class UI_Dialogue : MonoBehaviour
     private bool dialogueActivated;
     private int step;
 
+    public Timer timer;
+
     // Update is called once per frame
     void Update()
     {
@@ -42,6 +44,7 @@ public class UI_Dialogue : MonoBehaviour
         {
             if (step >= speaker.Length)
             {
+                timer.isActive = true;
                 dialogueCanvas.SetActive(false);
                 step = 0;
             }
