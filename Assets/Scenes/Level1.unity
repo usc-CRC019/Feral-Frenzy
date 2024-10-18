@@ -11058,6 +11058,7 @@ GameObject:
   - component: {fileID: 1206272974}
   - component: {fileID: 1206272976}
   - component: {fileID: 1206272975}
+  - component: {fileID: 1206272977}
   m_Layer: 5
   m_Name: InteractionIcon
   m_TagString: Untagged
@@ -11119,6 +11120,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206272973}
   m_CullTransparentMesh: 1
+--- !u!114 &1206272977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206272973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 975be5293febff746a3c336f1c5ccb6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 129276060}
+  target: {fileID: 1180884421}
 --- !u!1 &1206501689
 GameObject:
   m_ObjectHideFlags: 0
