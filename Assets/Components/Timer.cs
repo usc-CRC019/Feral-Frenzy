@@ -33,6 +33,7 @@ public class Timer : MonoBehaviour
         timeFormats.Add(TimerFormats.TenthDecimal, "0.0");
         timeFormats.Add(TimerFormats.HundrethsDecimal, "0.00");
         timeFormats.Add(TimerFormats.Dbl, "00");
+        timeFormats.Add(TimerFormats.DblDbl, "00.00");
 
         hitMinute = false;
         hitHour = false;
@@ -122,4 +123,5 @@ public enum TimerFormats
     TenthDecimal,
     HundrethsDecimal,
     Dbl,
+    DblDbl,
 }
