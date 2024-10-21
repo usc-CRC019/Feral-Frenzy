@@ -128,6 +128,7 @@ public class Player : MonoBehaviour
 
     public void RespawnPlayer()
     {
+        GetComponent<CharacterController>().enabled = false;
         playerAlive = true;
         playerHealth = 100f;
         playerStamina = 100f;

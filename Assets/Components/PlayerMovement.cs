@@ -475,7 +475,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        Debug.Log(wallClimbStoredTime);
+        //Debug.Log(wallClimbStoredTime);
         //Debug.Log(playerVelocity.y);
     }
 }
