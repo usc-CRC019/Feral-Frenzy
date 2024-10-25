@@ -7,6 +7,7 @@ public class UI_MainMenuButtonHover : MonoBehaviour, IPointerEnterHandler, IPoin
 {
     public string buttonName;
     public MainMenu menu;
+    private Sprite lastHovered;
 
     //Detect if the Cursor starts to pass over the GameObject
     public void OnPointerEnter(PointerEventData pointerEventData)
@@ -14,19 +15,26 @@ public class UI_MainMenuButtonHover : MonoBehaviour, IPointerEnterHandler, IPoin
         switch (buttonName)
         {
             default:
-                menu.background.sprite = menu.backgrounds[0];
-                Debug.Log("1");
+                if (lastHovered != null)
+                {
+                    menu.background.sprite = lastHovered;
+                }
+                else
+                {
+                    menu.background.sprite = menu.backgrounds[0];
+                }
                 break;
             case "Start":
                 menu.background.sprite = menu.backgrounds[0];
+                lastHovered = menu.backgrounds[0];
                 break;
             case "Options":
                 menu.background.sprite = menu.backgrounds[1];
-                Debug.Log("2");
+                lastHovered = menu.backgrounds[1];
                 break;
             case "Exit":
                 menu.background.sprite = menu.backgrounds[2];
-                Debug.Log("3");
+                lastHovered = menu.backgrounds[2];
                 break;
         }
 
@@ -34,10 +42,14 @@ public class UI_MainMenuButtonHover : MonoBehaviour, IPointerEnterHandler, IPoin
         //Debug.Log("Cursor Entering " + name + " GameObject");
     }
 
+    //public void Update()
+    //{
+    //    Debug.Log(lastHovered);
+    //}
+
     //Detect when Cursor leaves the GameObject
     public void OnPointerExit(PointerEventData pointerEventData)
     {
-        menu.background.sprite = menu.backgrounds[0];
         //Output the following message with the GameObject's name
         //Debug.Log("Cursor Exiting " + name + " GameObject");
     }
