@@ -22,7 +22,7 @@ public class FallBarrier : MonoBehaviour
     {
         if (other.gameObject == player.gameObject)
         {
-            player.RespawnPlayer();
+            player.KillPlayer();
             Debug.Log("Hit");
         }
     }
