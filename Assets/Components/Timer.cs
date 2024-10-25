@@ -35,6 +35,7 @@ public class Timer : MonoBehaviour
         timeFormats.Add(TimerFormats.Dbl, "00");
         timeFormats.Add(TimerFormats.DblDbl, "00.00");
 
+        timerText.alpha = 0;
         hitMinute = false;
         hitHour = false;
         isActive = false;
@@ -47,6 +48,7 @@ public class Timer : MonoBehaviour
         if (isActive)
         {
             currentSeconds = countDown ? currentSeconds -= Time.deltaTime : currentSeconds += Time.deltaTime;
+            timerText.alpha = 255;
         }
         
 

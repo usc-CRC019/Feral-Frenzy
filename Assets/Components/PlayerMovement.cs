@@ -126,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space) && canJump && playerStats.playerStamina >= playerStats.jumpStaminaCost && !isWallrunning)
         {
-            playerStats.moveSpeed = playerStats.walkMoveSpeed - 1;
+            playerStats.moveSpeed = playerStats.walkMoveSpeed - 0.5f;
 
             if (builtUpJumpPower <= 3f)
             {
@@ -199,7 +199,7 @@ public class PlayerMovement : MonoBehaviour
 
 
             //Left wall check
-            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.09f, -transform.right, out hitLeft, 0.19f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
+            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.09f, -transform.right, out hitLeft, 0.19f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Editor))
             {
                 if (Input.GetKey(KeyCode.A))
                 {
@@ -227,7 +227,7 @@ public class PlayerMovement : MonoBehaviour
             
 
             //Right wall check
-            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.09f, transform.right, out hitRight, 0.19f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
+            if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.09f, transform.right, out hitRight, 0.19f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Editor))
             {
                 if (Input.GetKey(KeyCode.D))
                 {
@@ -412,7 +412,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded || isJumping || isFalling)
         {
-            if (Input.GetKey(KeyCode.W) && wallClimbStoredTime > 0f && RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.06f, transform.forward, out hitFront, 0.19f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
+            if (Input.GetKey(KeyCode.W) && wallClimbStoredTime > 0f && RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.06f, transform.forward, out hitFront, 0.19f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Editor))
             {
                 currentMoveVector = new Vector3(0, 0, 0);
                 moveDirection.x = 0;
