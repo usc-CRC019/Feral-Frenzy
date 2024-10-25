@@ -412,7 +412,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded || isJumping || isFalling)
         {
-            if (Input.GetKey(KeyCode.W) && wallClimbStoredTime > 0f && RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.09f, transform.forward, out hitFront, 0.19f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
+            if (Input.GetKey(KeyCode.W) && wallClimbStoredTime > 0f && RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(transform.position, 0.06f, transform.forward, out hitFront, 0.19f, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both))
             {
                 currentMoveVector = new Vector3(0, 0, 0);
                 moveDirection.x = 0;
