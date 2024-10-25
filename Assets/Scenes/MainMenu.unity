@@ -376,6 +376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   background: {fileID: 1897466383}
   backgrounds:
+  - {fileID: 21300000, guid: 67d56390b57f188479ad7a32c6504a92, type: 3}
   - {fileID: 21300000, guid: 72dbc523e5588c649a17f2e43118e9e3, type: 3}
   - {fileID: 21300000, guid: a9c15e49bd2900b4eb4c219632d9bda0, type: 3}
   - {fileID: 21300000, guid: b9b342672c84e9946acb0e82a72f47b6, type: 3}
@@ -695,7 +696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcfef2e23a3059f469669f990a70628d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonName: Play
+  buttonName: Start
   menu: {fileID: 370304252}
 --- !u!114 &1497154515
 MonoBehaviour:
@@ -878,7 +879,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 72dbc523e5588c649a17f2e43118e9e3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 67d56390b57f188479ad7a32c6504a92, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
