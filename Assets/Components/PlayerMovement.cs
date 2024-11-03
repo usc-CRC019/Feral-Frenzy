@@ -7,7 +7,6 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController characterController;
     private Vector3 moveDirection;
     private Vector3 playerVelocity;
-
     public bool isGrounded;
     public bool isSprinting;
     public bool isJumping;
@@ -34,7 +33,10 @@ public class PlayerMovement : MonoBehaviour
 
     private float slopeMovementY;
     private float lastGroundedTime;
-
+    private void Awake()
+    {
+        
+    }
 
     [SerializeField]
     private GameObject playerCamera;
@@ -73,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = new Vector3(hInput, 0, vInput);
         moveDirection = transform.TransformDirection(moveDirection);
 
-        if (lastGroundedTime < Time.time + 0.2f && !isFalling && !isJumping)
+        if (lastGroundedTime < Time.time + 0.1f && !isFalling && !isJumping)
         {
             canJump = true;
         }
@@ -142,6 +144,7 @@ public class PlayerMovement : MonoBehaviour
             builtUpJumpPower = 0f;
         }
 
+
         if (Input.GetKeyUp(KeyCode.Space) && canJump && playerStats.playerStamina >= playerStats.jumpStaminaCost && !isWallrunning)
         {
             wallrunCooldown = Time.time + 0.35f;
@@ -166,9 +169,9 @@ public class PlayerMovement : MonoBehaviour
             isWallrunningRight = false;
             CameraLookAt(centerLookAt);
         }
-
-        //Adds movement vector the player had at beginning of jump throughout the jump
-        if (isJumping)
+        
+            //Adds movement vector the player had at beginning of jump throughout the jump
+            if (isJumping)
         {
             moveDirection += (currentMoveVector * 0.75f);
         }
@@ -176,7 +179,7 @@ public class PlayerMovement : MonoBehaviour
         {
             currentMoveVector = Vector3.zero;
         }
-
+        
 
         RaycastHit hit;
         if (isJumping)
@@ -209,7 +212,7 @@ public class PlayerMovement : MonoBehaviour
                     {
                         isWallrunningLeft = true;
                         moveDirection.y = 0;
-                        
+
                     }
                     
 
@@ -223,6 +226,7 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 isWallrunningLeft = false;
+               
             }
             
 
@@ -360,7 +364,7 @@ public class PlayerMovement : MonoBehaviour
         if (!isGrounded && !isWallrunning && !isJumping)
         {
             CameraLookAt(centerLookAt);
-            if (Time.time > lastGroundedTime + 0.2f)
+            if (Time.time > lastGroundedTime + 0.1f)
             {
                 isFalling = true;
             }
