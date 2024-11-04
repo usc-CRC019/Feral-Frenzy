@@ -3,7 +3,32 @@ guid: 29d3dc7a85f7a4d489bed9e198e6543a
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BodyA
+    second: {fileID: 2100000, guid: bed69730cbd615a499bc37d59210a3ce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BotWear01_A
+    second: {fileID: 2100000, guid: 3f501b1bac7f54e4cb15eb900cb73153, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CatEyes_B
+    second: {fileID: 2100000, guid: 0f522f1d048bfe04f8d50be11a32ac5f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: HeadWear01_A
+    second: {fileID: 2100000, guid: 86d2d6b423231364687381e1dda62ca0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TopWear01_A
+    second: {fileID: 2100000, guid: 19e01ccd0ad34a9479887e4428e9d75e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
